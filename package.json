@@ -52,7 +52,7 @@
     "react-share": "^4.4.0",
     "remix-seo": "^0.1.0",
     "spin-delay": "^1.2.0",
-    "tiny-invariant": "^1.3.1"
+    "tiny-invariant": "^1.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
@@ -89,5 +89,6 @@
   },
   "prisma": {
     "seed": "node --trace-warnings prisma/seed.js"
-  }
+  },
+  "version": "0.0.0"
 }
