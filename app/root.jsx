@@ -128,6 +128,7 @@ function App() {
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <Meta />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
         <ThemeMeta />
         <Links />
       </head>
