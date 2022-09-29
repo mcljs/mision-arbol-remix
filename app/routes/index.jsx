@@ -14,6 +14,7 @@ import esLocale from "date-fns/locale/es";
 import { CallToAction } from "../components/CallToAction";
 import { useRef } from "react";
 import BannerNotiArbol from "../components/BannerNotiArbol";
+import { Reviews } from "../components/Review";
 
 const [seoMeta, seoLinks] = getSeo();
 
@@ -66,6 +67,11 @@ export default function Index() {
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
+// order posts by date
+  posts.sort((a, b) => { 
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
   return (
     <>
       <motion.div
@@ -162,6 +168,9 @@ export default function Index() {
               ref={containerRef}
               className="relative mx-auto mt-20 grid max-w-7xl grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6"
             >
+              {
+
+              }
               {isInView &&
                 posts.map((post) => (
                   <>
@@ -204,6 +213,8 @@ export default function Index() {
       <CallToAction />
 
       <BannerNotiArbol />
+      <Reviews/>
+      
       <VerticesHome />
       <Calendario />
     </>

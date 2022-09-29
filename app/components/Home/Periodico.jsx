@@ -34,7 +34,7 @@ const Periodico = () => {
                   {item.title2}
                 </p>
                 <Link
-                  src={item.ruta}
+                  to={item.ruta}
                   target={"_blank"}
                   className="mt-4 inline-flex transform cursor-pointer items-center justify-center rounded-md bg-green-500 py-2 px-4 font-semibold leading-8 transition-all duration-100 ease-in-out hover:scale-105 hover:bg-green-600"
                 >

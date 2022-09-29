@@ -1,62 +1,58 @@
-import Link from "./Link";
+import { useId } from "react";
+import { Container } from "./Container";
 
-const people = [
+const features = [
   {
     name: "Territorialización de la preservación a través del poder popular ",
-    imageUrl: "/vertices/vertice1.png",
-    twitterUrl: "#",
-    linkedinUrl: "#",
+    description:
+      "Expandir y consolidar los planes, programas y proyectos de la Misión Árbol nivel Internacional y nacional, promoviendo el empoderamiento, formación y vinculación del Poder Popular, niños, niñas y jóvenes en acciones ambientales.",
+    icon: "/vertices/vertice1.png",
   },
   {
-    name: "Preservación y conservación de la vida y el futuro.",
-    role: "Senior Designer",
-    imageUrl: "/vertices/vertice2.png",
-    twitterUrl: "#",
-    linkedinUrl: "#",
+    name: "Preservación y conservación de la vida y el futuro",
+    description:
+      "Desarrollo de planes, programas y proyectos para la protección, conservación, recuperación y restauración de nuestras zonas boscosas en pro de garantizar el equilibrio ecológico del planeta.",
+    icon: "/vertices/vertice2.png",
   },
   {
-    name: "Desarrollo sustentable y hábitat sostenible. ",
-    imageUrl: "/vertices/vertice3.png",
-    twitterUrl: "#",
-    linkedinUrl: "#",
+    name: "Trade in real-time",
+    description:
+      "Contribuir al desarrollo sustentable/sostenible mediante acciones productivas, científicas, económicas, sociales, que garanticen el uso equilibrado de los recursos naturales, combatir la crisis climática y proteger los Derechos de la Madre Tierra.",
+    icon: "/vertices/vertice3.png",
   },
-  // More people...
 ];
 
 export default function VerticesHome() {
   return (
-    <div className="">
-      <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
-        <div className="space-y-12">
-          <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
-            <h2 className="text-3xl font-extrabold tracking-tight text-black dark:text-slate-100 sm:text-4xl">
-              Vertices
-            </h2>
-          </div>
-          <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
-            {people.map((person) => (
-              <Link key={person.name}>
-                <li className="focus:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-primary-500 duration-300 disabled:opacity-50 disabled:ring-primary-500 rounded-lg lg:mt-0 bg-primary-900 py-10 px-6 text-center transition xl:px-10 xl:text-left">
-                  <div className="space-y-6 xl:space-y-10">
-                    <img
-                      className="mx-auto h-40 w-40 rounded-full xl:h-56 xl:w-56"
-                      src={person.imageUrl}
-                      alt=""
-                    />
-                    <div className="space-y-2 xl:flex xl:items-center xl:justify-center">
-                      <div className="space-y-1 text-lg font-medium leading-6">
-                        <h3 className="text-center text-slate-50">
-                          {person.name}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </Link>
-            ))}
-          </ul>
+    <section
+      id="secondary-features"
+      aria-label="Features for building a portfolio"
+      className="py-20 sm:py-32"
+    >
+      <Container>
+        <div className="mx-auto max-w-2xl sm:text-center">
+          <h2 className="text-4xl font-medium tracking-tight text-gray-900 dark:text-slate-100">
+            Vertices
+          </h2>
         </div>
-      </div>
-    </div>
+        <ul
+          role="list"
+          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3"
+        >
+          {features.map((feature) => (
+            <li
+              key={feature.name}
+              className="rounded-2xl border border-gray-200 p-8 bg-white dark:bg-secondary-900"
+            >
+              <img src={feature.icon} className="h-12 w-12" alt="" />
+              <h3 className="mt-6 font-semibold text-gray-900 dark:text-slate-100">
+                {feature.name}
+              </h3>
+              <p className="mt-2 text-gray-700 dark:text-secondary-200">{feature.description}</p>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
   );
 }

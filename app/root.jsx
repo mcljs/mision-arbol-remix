@@ -135,7 +135,7 @@ function App() {
         <Links />
         
       </head>
-      <body className="duration-50 h-full bg-slate-100  text-slate-900 transition dark:bg-slate-800">
+      <body className="duration-50 h-full bg-slate-100  text-slate-900 transition dark:bg-gray-900">
         <PageLoadingMessage />
         <NotificationMessage queryStringKey="message" delay={0.3} />
         <Navbar />
