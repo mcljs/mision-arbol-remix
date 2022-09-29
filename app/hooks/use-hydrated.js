@@ -6,7 +6,7 @@ let hydrating = true;
 export function useHydrated() {
   let [hydrated, setHydrated] = React.useState(() => !hydrating);
 
-  React.useEffect(function hydrate() {
+  React.useEffect(function hydrateRoot() {
     hydrating = false;
     setHydrated(true);
   }, []);

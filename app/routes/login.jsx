@@ -16,7 +16,7 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
-  const redirectTo = safeRedirect(formData.get("redirectTo"), "/notes");
+  const redirectTo = safeRedirect(formData.get("redirectTo"), "/posts/admin");
   const remember = formData.get("remember");
 
   if (!validateEmail(email)) {
@@ -62,7 +62,7 @@ export const meta = () => {
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/notes";
+  const redirectTo = searchParams.get("redirectTo") || "/posts/admin";
   const actionData = useActionData();
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);

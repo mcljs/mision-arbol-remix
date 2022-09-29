@@ -57,7 +57,6 @@ const navItems = [
   },
 ];
 
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -100,16 +99,16 @@ function Navbar() {
             <img className="h-10 w-auto sm:h-12" src="/logo.png" alt="" />
           </Link>
         </div>
-        <div className="-my-2 -mr-2 md:hidden flex">
-          <Popover.Button className="inline-flex items-center justify-center rounded-md dark:bg-gray-900 p-2 text-slate-900 dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+        <div className="-my-2 -mr-2 flex md:hidden">
+          <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200">
             <span className="sr-only">Open menu</span>
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </Popover.Button>
           <div className="ml-4 mt-1">
-              <ClientOnly fallback={<SsrPlaceholder />}>
-                {() => <ThemeToggle />}
-              </ClientOnly>
-            </div>
+            <ClientOnly fallback={<SsrPlaceholder />}>
+              {() => <ThemeToggle />}
+            </ClientOnly>
+          </div>
         </div>
         <Popover.Group as="nav" className="hidden space-x-10 md:flex">
           <Link
@@ -134,24 +133,23 @@ function Navbar() {
             to="/nosotros"
             className="text-base font-medium text-slate-900 hover:text-slate-800 dark:text-gray-50"
           >
-          Nosotros
+            Nosotros
           </Link>
           <Link
             to="/books"
             className="text-base font-medium text-slate-900 hover:text-slate-800 dark:text-gray-50"
           >
-          Biblioteca
+            Biblioteca
           </Link>
           <Link
             to="/guide"
             className="text-base font-medium text-slate-900 hover:text-slate-800 dark:text-gray-50"
           >
-          Guia de especies
+            Guia de especies
           </Link>
         </Popover.Group>
 
-   
-          {/*
+        {/*
         {!loggedIn ? (
      null
         ) : (
@@ -162,23 +160,22 @@ function Navbar() {
           </Form>
         )}
          */}
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            {user && (
-              <Link
-                to="/posts/admin"
-                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-green-600 to-green-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm"
-              >
-                View Post for {user.email}
-              </Link>
-            )}
-            <div className="px-4">
-              <ClientOnly fallback={<SsrPlaceholder />}>
-                {() => <ThemeToggle />}
-              </ClientOnly>
-            </div>
+        <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+          {user && (
+            <Link
+              to="/posts/admin"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-green-600 to-green-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm"
+            >
+              View Post for {user.email}
+            </Link>
+          )}
+          <div className="px-4">
+            <ClientOnly fallback={<SsrPlaceholder />}>
+              {() => <ThemeToggle />}
+            </ClientOnly>
           </div>
         </div>
-
+      </div>
 
       <Transition
         as={React.Fragment}
@@ -193,18 +190,14 @@ function Navbar() {
           focus
           className="absolute inset-x-0 top-0 z-[999999] origin-top-right transform p-2 transition md:hidden"
         >
-          <div className="divide-y-2 divide-gray-50 rounded-lg bg-slate-100 dark:bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5">
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-slate-100 shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-900">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <img
-                    className="h-8 w-auto"
-                    src="/logo.png"
-                    alt="Workflow"
-                  />
+                  <img className="h-8 w-auto" src="/logo.png" alt="Workflow" />
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md dark:bg-gray-900 p-2 text-gray-900 dark:text-slate-100 ocus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="ocus:outline-none inline-flex items-center justify-center rounded-md p-2 text-gray-900 focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:bg-gray-900 dark:text-slate-100">
                     <span className="sr-only">Close menu</span>
                     <XIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -212,16 +205,18 @@ function Navbar() {
               </div>
               <div className="mt-6">
                 <nav className="grid grid-cols-1 gap-7">
-                  {
-                    navItems.map((item) => ( 
-                      <Link key={item.name} to={item.href} className="block w-full p-2 dark:text-white">{item.name}</Link>
-                    ))
-                  }
-             
+                  {navItems.map((item, i) => (
+                    <Link
+                      key={i}
+                      to={item.href}
+                      className="block w-full p-2 dark:text-white"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </nav>
               </div>
             </div>
-         
           </div>
         </Popover.Panel>
       </Transition>

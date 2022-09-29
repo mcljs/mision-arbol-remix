@@ -67,8 +67,8 @@ export default function Index() {
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-// order posts by date
-  posts.sort((a, b) => { 
+  // order posts by date
+  posts.sort((a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt);
   });
 
@@ -159,7 +159,7 @@ export default function Index() {
             <h2 className="text-base font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">
               Actualidad
             </h2>
-            <p className="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 sm:text-4xl">
+            <p className="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 sm:text-5xl">
               Ultimas publicaciones
             </p>
           </div>
@@ -168,19 +168,17 @@ export default function Index() {
               ref={containerRef}
               className="relative mx-auto mt-20 grid max-w-7xl grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6"
             >
-              {
-
-              }
+              {}
               {isInView &&
-                posts.map((post) => (
+                posts.map((post,i) => (
                   <>
                     <div
                       ref={containerRef}
+                      key={post.slug}
                       className="col-span-4 mb-10 animate-fade-in "
                     >
                       <Link
                         to={`/posts/${post.slug}`}
-                        key={post.slug}
                         className="relative w-full"
                       >
                         <div className="group peer relative block w-full focus:outline-none">
@@ -213,8 +211,8 @@ export default function Index() {
       <CallToAction />
 
       <BannerNotiArbol />
-      <Reviews/>
-      
+      <Reviews />
+
       <VerticesHome />
       <Calendario />
     </>
