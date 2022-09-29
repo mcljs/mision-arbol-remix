@@ -92,13 +92,13 @@ function PageLoadingMessage() {
                 animate={{y: 0, opacity: 1}}
                 exit={{y: -15, opacity: 0}}
                 transition={{duration: 0.25}}
-                className="flex-none"
+                className="flex-none text-slate-100"
               >
                 {action}
               </motion.span>
             </div>
           </AnimatePresence>
-          <span className="text-secondary truncate">path: {pendingPath}</span>
+          <span className=" text-slate-200 truncate">path: {pendingPath}</span>
         </div>
       </div>
     </NotificationMessage>

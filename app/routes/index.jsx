@@ -159,7 +159,7 @@ export default function Index() {
             <h2 className="text-base font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">
               Actualidad
             </h2>
-            <p className="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 sm:text-5xl">
+            <p className="mt-2 text-3xl font-medium tracking-tight text-gray-900 dark:text-slate-100 sm:text-5xl">
               Ultimas publicaciones
             </p>
           </div>
@@ -170,7 +170,7 @@ export default function Index() {
             >
               {}
               {isInView &&
-                posts.map((post,i) => (
+                posts.slice(0,3).map((post,i) => (
                   <>
                     <div
                       ref={containerRef}

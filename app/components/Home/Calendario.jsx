@@ -8,27 +8,39 @@ function Calendario() {
           <div className="grid grid-cols-1 items-center gap-y-10 gap-x-16 lg:grid-cols-2">
             <div>
               <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-slate-50">
-                Calendario Ecosocialista Julio 2022
+                Calendario Ecosocialista Octubre 2022
               </h2>
               <p className="mt-4 text-gray-600 dark:text-slate-200">
-                <span className="text-slate-900 dark:text-slate-300">03.</span>-Día Mundial Sin
-                Bolsas Plásticas
+                <span className="text-slate-900 dark:text-slate-300">01.</span>-Día Mundial del Hábitat
               </p>
               <p className="mt-4 text-gray-600 dark:text-slate-200">
-                <span className="text-slate-900 dark:text-slate-300">04.</span>-Día de la
-                Constitución Mundial Ambiental
+                <span className="text-slate-900 dark:text-slate-300">04.</span>-Día Mundial de los Animales
               </p>
               <p className="mt-4 text-gray-600 dark:text-slate-200">
-                <span className="text-slate-900 dark:text-slate-300">07.</span>-Día Internacional de
-                la Conservación del Suelo
+                <span className="text-slate-900 dark:text-slate-300">05.</span>-Día Interamericano del Agua
               </p>
               <p className="mt-4 text-gray-600 dark:text-slate-200">
-                <span className="text-slate-900 dark:text-slate-300">11.</span>-Día Mundial de la
-                Población
+                <span className="text-slate-900 dark:text-slate-300">12.</span>-Día de la Resistencia Indígena
               </p>
               <p className="mt-4 text-gray-600 dark:text-slate-200">
-                <span className="text-slate-900 dark:text-slate-300">26.</span>-Día Internacional
-                para la Defensa del Manglar
+                <span className="text-slate-900 dark:text-slate-300">12.</span>-Día Internacional para la Resolución de
+Desastres Naturales
+              </p>
+              <p className="mt-4 text-gray-600 dark:text-slate-200">
+                <span className="text-slate-900 dark:text-slate-300">16.</span>-Día Mundial de la Alimentación
+              </p>
+              <p className="mt-4 text-gray-600 dark:text-slate-200">
+                <span className="text-slate-900 dark:text-slate-300">18.</span>-Día de la Protección a la Naturaleza
+              </p>
+              <p className="mt-4 text-gray-600 dark:text-slate-200">
+                <span className="text-slate-900 dark:text-slate-300">21.</span>-Día Mundial del Ahorro Energético
+              </p>
+              <p className="mt-4 text-gray-600 dark:text-slate-200">
+                <span className="text-slate-900 dark:text-slate-300">26.</span>-Día Mundial de Información sobre
+Desarrollo
+              </p>
+              <p className="mt-4 text-gray-600 dark:text-slate-200">
+                <span className="text-slate-900 dark:text-slate-300">29.</span>-Día de la Semillas Campesina
               </p>
               <a
                 href="https://drive.google.com/file/d/19cog2N9LxE93-sD85pPV8EakNNZLCmia/view"

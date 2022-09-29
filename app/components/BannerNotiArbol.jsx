@@ -80,7 +80,7 @@ const BannerNotiArbol = () => (
                       y={0}
                       width={4}
                       height={4}
-                      className="text-primary-500"
+                      className="text-secondary-700"
                       fill="currentColor"
                     />
                   </pattern>
@@ -113,7 +113,7 @@ const BannerNotiArbol = () => (
                       y={0}
                       width={4}
                       height={4}
-                      className="text-primary-500"
+                      className="text-secondary-700"
                       fill="currentColor"
                     />
                   </pattern>

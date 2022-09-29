@@ -70,7 +70,7 @@ export default function PostRoute({ twitterHandle }) {
           />
         </figure>
         <div
-          className="prose prose-lg prose-indigo mx-auto mt-6 pb-20 text-gray-500 dark:prose-invert dark:text-white"
+          className="prose prose-lg prose-indigo mx-auto mt-6 pb-20 text-secondary-700 dark:prose-invert dark:text-white"
           dangerouslySetInnerHTML={{ __html: html }}
         />
         <img
