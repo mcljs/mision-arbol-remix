@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import { useSearchParams } from "@remix-run/react";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
@@ -19,7 +18,7 @@ function NotificationMessage({
   const hasQueryStringValue = queryStringKey
     ? searchParams.has(queryStringKey)
     : false;
-  const [isVisible, setIsVisible] = useState(
+  const [isVisible, setIsVisible] = React.useState(
     !queryStringKey || hasQueryStringValue
   );
   const messageFromQuery = queryStringKey && searchParams.get(queryStringKey);

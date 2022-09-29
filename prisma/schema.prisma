@@ -32,6 +32,18 @@ model Note {
   userId String
 }
 
+model Book {
+  slug     String @id
+  title String
+  description String
+  author String
+  imageUrl String
+  downloadUrl String
+  markdown  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Post {
   slug     String @id
   title    String

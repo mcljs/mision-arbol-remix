@@ -95,7 +95,7 @@ export default function PostSlug() {
         <div className="w-full lg:w-2/5">
           <img
             src={data.imageURL}
-            className="hidden rounded-none shadow-2xl lg:block lg:rounded-lg"
+            className="hidden lg:ml-5 rounded-none shadow-2xl lg:block lg:rounded-lg"
             alt="img"
           />
         </div>

@@ -15,11 +15,11 @@ import {
   unstable_createMemoryUploadHandler,
 } from "@remix-run/node";
 import {
-  createPost,
-  deletePost,
-  getPost,
-  updatePost,
-} from "~/models/post.server";
+  createBook,
+  deleteBook,
+  getBook,
+  updateBook,
+} from "~/models/book.server";
 import invariant from "tiny-invariant";
 import { requireAdminUser } from "~/session.server";
 import { useRef, useState } from "react";
@@ -31,7 +31,7 @@ export const loader = async ({ request, params }) => {
   if (params.slug === "new") {
     return json({});
   }
-  const post = await getPost(params.slug);
+  const post = await getBook(params.slug);
   if (!post) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -43,7 +43,7 @@ export const action = async ({ request, params }) => {
     unstable_createFileUploadHandler({
       avoidFileConflicts: true,
       maxPartSize: 10_000_000,
-      directory: "public/uploads",
+      directory: "public/books",
       file: ({ filename }) => filename,
     }),
     unstable_createMemoryUploadHandler()
@@ -57,19 +57,23 @@ export const action = async ({ request, params }) => {
   invariant(params.slug, "slug is required");
   const intent = formData.get("intent");
   if (intent === "delete") {
-    await deletePost(params.slug);
-    return redirect("/posts/admin");
+    await deleteBook(params.slug);
+    return redirect("/books/admin");
   }
 
   const title = formData.get("title");
   const description = formData.get("description");
   const imageUrl = formData.get("imageUrl");
+  const author = formData.get("author");
+  const downloadUrl = formData.get("downloadUrl");
   const slug = formData.get("slug");
   const markdown = formData.get("markdown");
 
   const errors = {
     title: title ? null : "Title is required",
     desscription: description ? null : "Description is required",
+    author: author ? null : "Author is required",
+    downloadUrl: downloadUrl ? null : "Download Url is required",
     imageUrl: imageUrl ? null : "Url de la imagen es requerida",
     slug: slug ? null : "Slug is required",
     markdown: markdown ? null : "Markdown is required",
@@ -84,12 +88,22 @@ export const action = async ({ request, params }) => {
   invariant(typeof markdown === "string", "markdown must be a string");
 
   if (params.slug === "new") {
-    await createPost({ title, description, slug, imageUrl, markdown });
-  } else {
-    await updatePost(params.slug, {
+    await createBook({
       title,
       description,
       slug,
+      author,
+      downloadUrl,
+      imageUrl,
+      markdown,
+    });
+  } else {
+    await updateBook(params.slug, {
+      title,
+      description,
+      slug,
+      author,
+      downloadUrl,
       imageUrl,
       markdown,
     });
@@ -97,7 +111,6 @@ export const action = async ({ request, params }) => {
 
   return redirect("/posts/admin");
 };
-
 
 export default function NewPostRoute() {
   const data = useLoaderData();
@@ -109,7 +122,6 @@ export default function NewPostRoute() {
   //   blah();
   // });
 
-  const formRef = useRef();
   const transition = useTransition();
   const isCreating = transition.submission?.formData.get("intent") === "create";
   const isUpdating = transition.submission?.formData.get("intent") === "update";
@@ -161,6 +173,20 @@ export default function NewPostRoute() {
         className="mb-4"
         defaultValue={data.post?.description}
         error={errors?.description ? errors.description : null}
+      />
+      <Field
+        type="text"
+        name="author"
+        label="Autor"
+        defaultValue={data.post?.author}
+        error={errors?.author ? errors.author : null}
+      />
+      <Field
+        type="text"
+        name="downloadUrl"
+        label="Url de descarga"
+        defaultValue={data.post?.downloadUrl}
+        error={errors?.downloadUrl ? errors.downloadUrl : null}
       />
       <label
         htmlFor="file-upload"

@@ -4,13 +4,16 @@ import Calendario from "../components/Home/Calendario";
 import CensoNacional from "../components/Home/CensoNacional";
 import NotiArbol from "../components/NotiArbol";
 import VerticesHome from "../components/VerticesHome";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 import { getSeo, getSeoMeta } from "~/utils/seo";
 import { json } from "@remix-run/node";
 import { getPostListings } from "../models/post.server";
 import formatDate from "date-fns/format";
 import parseISO from "date-fns/parseISO";
-import esLocale from 'date-fns/locale/es';
+import esLocale from "date-fns/locale/es";
+import { CallToAction } from "../components/CallToAction";
+import { useRef } from "react";
+import BannerNotiArbol from "../components/BannerNotiArbol";
 
 const [seoMeta, seoLinks] = getSeo();
 
@@ -57,7 +60,8 @@ export default function Index() {
   const user = useOptionalUser();
   const shouldReduceMotion = useReducedMotion();
   const { posts } = useLoaderData();
-
+  let containerRef = useRef();
+  let isInView = useInView(containerRef, { once: true, amount: 0.4 });
   const childVariants = {
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -94,8 +98,8 @@ export default function Index() {
                 variants={childVariants}
                 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
               >
-                <span className=" text-primary">Misión</span>
-                <span className="text-primary"> Árbol</span>
+                <span className=" text-primary-900">Misión</span>
+                <span className="text-primary-900"> Árbol</span>
               </motion.h1>
               <motion.p
                 variants={childVariants}
@@ -153,101 +157,55 @@ export default function Index() {
               Ultimas publicaciones
             </p>
           </div>
-          <div className="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-3 lg:px-8">
-            {posts.map((post) => (
-              <>
-                <div key={post.slug} className="relative w-full">
-                  <div className="group peer relative block w-full focus:outline-none">
-                    <div className="aspect-h-4 aspect-w-3 rounded-lg">
-                      <img
-                        className="focus-ring w-full rounded-lg object-cover object-center transition"
-                        src={`/uploads/${post.imageUrl}`}
-                        alt=""
-                      />
-                    </div>
-                    <div className="text-slate-800 dark:text-slate-300 mt-8 text-xl font-medium">
-                      {formatDate(parseISO(post.createdAt), "PPP", { locale: esLocale })}
-                    </div>
-                    <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
-                      {post.title}
-                    </div>
-                  </div>
-                </div>
-              </>
-            ))}
-          </div>
-        </div>
-      </div>
-      <CensoNacional />
-      <NotiArbol />
-      <VerticesHome />
-      <Calendario />
-
-      <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
-        <div className="relative sm:pb-16 sm:pt-8">
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
-              <div className="absolute inset-0">
-                <img
-                  className="h-full w-full object-cover"
-                  src="https://user-images.githubusercontent.com/1500684/157774694-99820c51-8165-4908-a031-34fc371ac0d6.jpg"
-                  alt="Sonic Youth On Stage"
-                />
-
-                <div className="absolute inset-0 bg-[color:rgba(254,204,27,0.5)] mix-blend-multiply" />
-              </div>
-              <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-32">
-                <h1 className="text-center text-6xl font-extrabold tracking-tight sm:text-8xl lg:text-9xl">
-                  <span className="block uppercase text-yellow-500 drop-shadow-md">
-                    Indie Stack
-                  </span>
-                </h1>
-                <p className="mx-auto mt-6 max-w-lg text-center text-xl text-white sm:max-w-3xl">
-                  Check the README.md file for instructions on how to get this
-                  project deployed.
-                </p>
-                <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
-                  {user ? (
-                    <Link
-                      to="/notes"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
+          <div className="relative mx-10vw">
+            <div
+              ref={containerRef}
+              className="relative mx-auto mt-20 grid max-w-7xl grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6"
+            >
+              {isInView &&
+                posts.map((post) => (
+                  <>
+                    <div
+                      ref={containerRef}
+                      className="col-span-4 mb-10 animate-fade-in "
                     >
-                      View Notes for {user.email}
-                    </Link>
-                  ) : (
-                    <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
                       <Link
-                        to="/join"
-                        className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
+                        to={`/posts/${post.slug}`}
+                        key={post.slug}
+                        className="relative w-full"
                       >
-                        Sign up
-                      </Link>
-                      <Link
-                        to="/login"
-                        className="flex items-center justify-center rounded-md bg-yellow-500 px-4 py-3 font-medium text-white hover:bg-yellow-600  "
-                      >
-                        Log In
+                        <div className="group peer relative block w-full focus:outline-none">
+                          <div className="aspect-h-4 aspect-w-3 rounded-lg">
+                            <img
+                              className="focus-ring w-full rounded-lg object-cover object-center transition"
+                              src={`/uploads/${post.imageUrl}`}
+                              alt=""
+                            />
+                          </div>
+                          <div className="mt-8 text-xl font-medium text-slate-800 dark:text-slate-300">
+                            {formatDate(parseISO(post.createdAt), "PPP", {
+                              locale: esLocale,
+                            })}
+                          </div>
+                          <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
+                            {post.title}
+                          </div>
+                        </div>
                       </Link>
                     </div>
-                  )}
-                </div>
-                <a href="https://remix.run">
-                  <img
-                    src="https://user-images.githubusercontent.com/1500684/158298926-e45dafff-3544-4b69-96d6-d3bcc33fc76a.svg"
-                    alt="Remix"
-                    className="mx-auto mt-16 w-full max-w-[12rem] md:max-w-[16rem]"
-                  />
-                </a>
-              </div>
+                  </>
+                ))}
             </div>
           </div>
-          <div className="mx-auto mt-16 max-w-7xl text-center">
-            <Link to="/posts" className="text-xl text-blue-600 underline">
-              Blog Posts
-            </Link>
-          </div>
+
+          <div className="mx-auto mt-12 grid max-w-md gap-8 px-4 sm:max-w-lg sm:px-6 lg:max-w-7xl lg:grid-cols-3 lg:px-8"></div>
         </div>
-      </main>
+      </div>
+      <CallToAction />
+
+      <BannerNotiArbol />
+      <VerticesHome />
+      <Calendario />
     </>
   );
 }

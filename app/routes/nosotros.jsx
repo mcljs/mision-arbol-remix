@@ -2,8 +2,27 @@ import React from "react";
 import HeaderLayout from "../components/HeaderLayout";
 import Link from "../components/Link";
 import Upload from "./posts/upload";
+import { getSeo } from "~/utils/seo";
+
+const [seoMeta, seoLinks] = getSeo({
+  title: "Mision Arbol - Nosotros",
+  twitter: {
+    title: "Mision Arbol - Nosotros",
+  },
+});
+
+export const meta = () => {
+  return { ...seoMeta };
+};
+
+export const links = () => {
+  return [...seoLinks];
+};
+
+
 
 function nosotros() {
+
   return (
     <div>
       <HeaderLayout
@@ -11,8 +30,7 @@ function nosotros() {
         image="https://res.cloudinary.com/dk5bvgq20/image/upload/v1626942315/assets/vertice-2_gagutx.webp"
       />
 
-      <section className="-mt-24 bg-gray-100 dark:bg-[#0791e6] pb-20">
-
+      <section className="-mt-24 bg-gray-100 pb-20 dark:bg-[#0791e6]">
         <div className="container mx-auto px-4 dark:bg-[#0791e6]">
           <div className="flex flex-wrap dark:bg-[#0791e6]">
             <div className="w-full px-4 pt-6 text-center md:w-4/12 lg:pt-12">
@@ -119,86 +137,96 @@ function nosotros() {
               </p>
             </div>
           </div>
+          <ul
+            role="list"
+            className="mx-10vw space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-2 lg:gap-x-8"
+          >
+            <li>
+              <div className="space-y-4">
+                <div className="aspect-w-3 aspect-h-2">
+                  <img
+                    className="rounded-lg object-cover shadow-lg"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6NPWTFYHv0U8zNP6o--FWLTH2S2IzDHM6o5iMJC6A4FCzvdqJyu2Ma0a4TQBeEDD77r8&usqp=CAU"
+                    alt=""
+                  />
+                </div>
 
-          <ul className="grid grid-cols-1 gap-16 sm:grid-cols-2 sm:gap-8">
-            <li className="rounden-lg flex flex-col items-center overflow-hidden">
-              <div className="w-48 overflow-hidden rounded-lg sm:w-64">
-                <img
-                  alt="..."
-                  src="https://pbs.twimg.com/profile_images/1037101550571806722/zYacZcEJ_400x400.jpg"
-                  className="h-full w-full bg-gray-100"
-                  style={{ position: "relative", overflow: "hidden" }}
-                />
-              </div>
-              <div className="mt-4 p-0 text-center sm:mt-0 sm:p-8">
-                <h1 className="text-xl font-bold dark:text-white">
-                  Wilmer Vásquez Mateus
-                </h1>
-                <h2 className="text-yellow-1100 my-3 text-xs uppercase tracking-wider">
-                  PRESIDENTE DE LA FUNDACIÓN MISIÓN ÁRBOL
-                </h2>
-                <Link to="https://twitter.com/wilmervasquezm?lang=es">
-                  <button
-                    className="mt-4 inline-flex cursor-pointer items-center rounded-md bg-gray-200 px-3 py-2 dark:bg-[#132035]"
-                    type="button"
-                  >
-                    <svg
-                      class="mr-1 text-[#1d9bf0]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
+                <div className="space-y-2">
+                  <div className="space-y-1 text-lg font-medium leading-6">
+                    <h3 className="dark:text-white">
+                      {" "}
+                      Josué Alejandro Lorca Vega
+                    </h3>
+                    <p className="dark:text-slate-200 text-secondary-900">
+                      MINISTRO DEL PODER POPULAR PARA EL ECOSOCIALISMO
+                    </p>
+                  </div>
+                  <Link to="https://twitter.com/JosueLorca">
+                    <button
+                      className="mt-4 inline-flex cursor-pointer items-center rounded-md bg-gray-200 px-3 py-2 dark:bg-[#132035]"
+                      type="button"
                     >
-                      <g fill="currentColor">
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                        <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"></path>
-                      </g>
-                    </svg>{" "}
-                    <span className="dark:text-white">Twitter</span>{" "}
-                  </button>
-                </Link>
+                      <svg
+                        className="mr-1 text-[#1d9bf0]"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                      >
+                        <g fill="currentColor">
+                          <path fill="none" d="M0 0h24v24H0z"></path>
+                          <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"></path>
+                        </g>
+                      </svg>{" "}
+                      <span className="dark:text-white">Twitter</span>{" "}
+                    </button>
+                  </Link>
+                </div>
               </div>
             </li>
 
-            <li className="rounden-lg flex flex-col items-center overflow-hidden">
-              <div className="w-48 overflow-hidden rounded-lg sm:w-64">
-                <img
-                  alt="..."
-                  src="../images/9812.jpeg"
-                  className="h-full w-full bg-gray-100"
-                  style={{ position: "relative", overflow: "hidden" }}
-                />
-              </div>
-              <div className="mt-4 p-0 text-center sm:mt-0 sm:p-8">
-                <h1 className="text-xl font-bold dark:text-white">
-                  Josué Alejandro Lorca Vega
-                </h1>
-                <h2 className="text-yellow-1100 my-3 text-xs uppercase tracking-wider">
-                  MINISTRO DEL PODER POPULAR PARA EL ECOSOCIALISMO
-                </h2>
-                <Link to="https://twitter.com/JosueLorca">
-                  <button
-                    className="mt-4 inline-flex cursor-pointer items-center rounded-md bg-gray-200 px-3 py-2 dark:bg-[#132035]"
-                    type="button"
-                  >
-                    <svg
-                      class="mr-1 text-[#1d9bf0]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
+            <li>
+              <div className="space-y-4">
+                <div className="aspect-w-3 aspect-h-2">
+                  <img
+                    className="rounded-lg object-cover shadow-lg"
+                    src="https://pbs.twimg.com/profile_images/1037101550571806722/zYacZcEJ_400x400.jpg"
+                    alt=""
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <div className="space-y-1 text-lg font-medium leading-6">
+                    <h3 className="dark:text-white">Wilmer Vásquez Mateus</h3>
+                    <p className="dark:text-slate-200 text-secondary-900">
+                      PRESIDENTE DE LA FUNDACIÓN MISIÓN ÁRBOL
+                    </p>
+                  </div>
+                  <Link to="https://twitter.com/wilmervasquezm?lang=es">
+                    <button
+                      className="mt-4 inline-flex cursor-pointer items-center rounded-md bg-gray-200 px-3 py-2 dark:bg-[#132035]"
+                      type="button"
                     >
-                      <g fill="currentColor">
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                        <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"></path>
-                      </g>
-                    </svg>{" "}
-                    <span className="dark:text-white">Twitter</span>{" "}
-                  </button>
-                </Link>
+                      <svg
+                        className="mr-1 text-[#1d9bf0]"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                      >
+                        <g fill="currentColor">
+                          <path fill="none" d="M0 0h24v24H0z"></path>
+                          <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"></path>
+                        </g>
+                      </svg>{" "}
+                      <span className="dark:text-white">Twitter</span>{" "}
+                    </button>
+                  </Link>
+                </div>
               </div>
             </li>
           </ul>
+        
         </div>
       </section>
     </div>

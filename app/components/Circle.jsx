@@ -40,7 +40,7 @@ function getSegmentPath(
 }
 
 const colors = {
-  PRIMARY400: 'text-primary',
+  PRIMARY400: 'text-primary-900',
   SECONDARY300: 'text-green-300',
   SECONDARY800: 'text-gray-800',
   UNKNOWN: 'text-green-900',

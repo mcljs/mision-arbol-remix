@@ -36,7 +36,7 @@ export default function VerticesHome() {
           <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
             {people.map((person) => (
               <Link key={person.name}>
-                <li className="focus:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-primary-500 duration-300 disabled:opacity-50 disabled:ring-primary-500 rounded-lg lg:mt-0 bg-primary py-10 px-6 text-center transition xl:px-10 xl:text-left">
+                <li className="focus:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-primary-500 duration-300 disabled:opacity-50 disabled:ring-primary-500 rounded-lg lg:mt-0 bg-primary-900 py-10 px-6 text-center transition xl:px-10 xl:text-left">
                   <div className="space-y-6 xl:space-y-10">
                     <img
                       className="mx-auto h-40 w-40 rounded-full xl:h-56 xl:w-56"

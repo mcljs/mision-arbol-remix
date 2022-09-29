@@ -62,14 +62,7 @@ export default function Posts() {
         </h1>
 
         <div className="mt-8 flex justify-center">
-          <div className="inline-flex rounded-md bg-yellow-600 shadow">
-            <Link
-              to="/guide/search"
-              className="py-2 px-6 font-bold text-gray-200"
-            >
-              Buscar
-            </Link>
-          </div>
+        
         </div>
       </div>
       <div className="px-20 py-16 sm:px-40">
