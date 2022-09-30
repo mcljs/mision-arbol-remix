@@ -3,14 +3,14 @@
    * @example
    * https://developers.google.com/analytics/devguides/collection/gtagjs/pages
    */
-  export const pageview = (url, trackingId) => {
+  export const pageview = (url) => {
     if (!window.gtag) {
       console.warn(
         "window.gtag is not defined. This could mean your google analytics script has not loaded on the page yet."
       );
       return;
     }
-    window.gtag("config", trackingId, {
+    window.gtag("config", "G-VGW41JSE5N", {
       page_path: url,
     });
   };

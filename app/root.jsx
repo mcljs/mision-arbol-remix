@@ -203,11 +203,11 @@ function App() {
         <Links />
       </head>
       <body className="duration-50 h-full bg-slate-100  text-slate-900 transition dark:bg-gray-900">
-        {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
+        {gaTrackingId ? null : (
           <>
             <script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=G-VGW41JSE5N`}
             />
             <script
               async
@@ -217,7 +217,7 @@ function App() {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gaTrackingId}', {
+                gtag('config', 'G-VGW41JSE5N', {
                   page_path: window.location.pathname,
                 });
               `,
