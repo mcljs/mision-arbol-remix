@@ -15,6 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./styles/style.css";
 import { SsrTheme, ThemeMeta, ThemeProvider, useTheme } from "./utils/theme";
 import { getThemeSession } from "./utils/theme-session.server";
+import * as gtag from "./utils/gtags.client";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
 import Navbar from "./components/Navbar";
@@ -185,31 +186,44 @@ export const loader = async ({ request }) => {
 };
 
 function App() {
+  const { gaTrackingId } = useLoaderData();
   const [theme] = useTheme();
+
+  React.useEffect(() => {
+    if (gaTrackingId?.length) {
+      gtag.pageview(location.pathname, gaTrackingId);
+    }
+  }, [location, gaTrackingId]);
   return (
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
         <Meta />
         <Links />
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-VGW41JSE5N"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-VGW41JSE5N', {
-              page_path: window.location.pathname,
-            });
-          `,
-          }}
-        />
       </head>
       <body className="duration-50 h-full bg-slate-100  text-slate-900 transition dark:bg-gray-900">
+        {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+          </>
+        )}
         <PageLoadingMessage />
         <NotificationMessage queryStringKey="message" delay={0.3} />
         <Navbar />
