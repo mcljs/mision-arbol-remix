@@ -8,9 +8,9 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useLocation,
   useTransition,
 } from "@remix-run/react";
-import ReactGA from "react-ga";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./styles/style.css";
 import { SsrTheme, ThemeMeta, ThemeProvider, useTheme } from "./utils/theme";
@@ -186,6 +186,7 @@ export const loader = async ({ request }) => {
 };
 
 function App() {
+  const location = useLocation();
   const { gaTrackingId } = useLoaderData();
   const [theme] = useTheme();
 
