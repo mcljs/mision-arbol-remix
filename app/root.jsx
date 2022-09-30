@@ -22,6 +22,72 @@ import { useSpinDelay } from "spin-delay";
 import { NotificationMessage } from "./components/NotificationMessage";
 import { Circle } from "./components/Circle";
 import Footer from "./components/Footer";
+import { getSeo, getSeoMeta } from "./utils/seo";
+import { externalLinks } from "./external-links";
+
+let [seoMeta, seoLinks] = getSeo();
+
+export const handle = {
+  structuredData() {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Mision Arbol",
+        url: externalLinks.self,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        image: `${externalLinks.self}/seoInit.jpeg`,
+        name: "Mision Arbol",
+        sameAs: [
+          externalLinks.githubSourceCode,
+          externalLinks.instagram,
+          externalLinks.self,
+          externalLinks.twitter,
+        ],
+        url: externalLinks.self,
+        worksFor: {
+          "@type": "Organization",
+          name: "REWORTH",
+        },
+      },
+    ];
+  },
+  i18n: ["command-palette", "common", "pages"],
+  id: "root",
+};
+
+export const meta = () => {
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    ...seoMeta,
+    ...getSeoMeta({
+      description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
+      openGraph: {
+        images: [
+          {
+            alt: "Misión Arbol - @fundamiarbolven",
+            image: `${externalLinks.self}/seoInit.jpeg`,
+            height: 630,
+            width: 1200,
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        image: {
+          alt: "Misión Arbol - @fundamiarbolven",
+          image: `${externalLinks.self}/seoInit.jpeg`,
+        },
+      },
+    }),
+  };
+};
 
 const LOADER_WORDS = ["Cargando..."];
 
@@ -107,6 +173,7 @@ export const links = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: styles },
+    ...seoLinks,
   ];
 };
 
@@ -127,9 +194,8 @@ function App() {
   return (
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
-        <Meta />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
         <ThemeMeta />
+        <Meta />
         <Links />
       </head>
       <body className="duration-50 h-full bg-slate-100  text-slate-900 transition dark:bg-gray-900">

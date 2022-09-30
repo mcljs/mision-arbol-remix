@@ -1,11 +1,8 @@
 import { Link, useLoaderData } from "@remix-run/react";
-import { useOptionalUser } from "~/utils";
 import Calendario from "../components/Home/Calendario";
-import CensoNacional from "../components/Home/CensoNacional";
-import NotiArbol from "../components/NotiArbol";
 import VerticesHome from "../components/VerticesHome";
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { getSeo, getSeoMeta } from "~/utils/seo";
+import { getSeoMeta } from "~/utils/seo";
 import { json } from "@remix-run/node";
 import { getPostListings } from "../models/post.server";
 import formatDate from "date-fns/format";
@@ -16,40 +13,27 @@ import { useRef } from "react";
 import BannerNotiArbol from "../components/BannerNotiArbol";
 import { Reviews } from "../components/Review";
 
-const [seoMeta, seoLinks] = getSeo();
+export const handle = {
+  getSitemapEntries() {
+    return [
+      {
+        route: "",
+        changefreq: "weekly",
+        priority: 1,
+      },
+    ];
+  },
+};
 
 export const meta = () => {
   return {
-    ...seoMeta,
     ...getSeoMeta({
-      openGraph: {
-        images: [
-          {
-            alt: "Mision Arbol",
-            url: `https://misionarbol.minec.gob.ve/seoInit.jpeg`,
-            height: 630,
-            width: 1200,
-          },
-        ],
-        type: "website",
-        openGraph: {
-          images: [
-            {
-              alt: "Mision Arbol",
-              url: `https://misionarbol.minec.gob.ve/seoInit.jpeg`,
-              height: 630,
-              width: 1200,
-            },
-          ],
-          type: "website",
-        },
-      },
+      title: "Misión Árbol",
+      description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
     }),
+    "og:image:alt": "Misión Árbol",
+    "twitter:image:alt": "Misión Árbol",
   };
-};
-
-export const links = () => {
-  return [...seoLinks];
 };
 
 export const loader = async () => {
@@ -58,7 +42,6 @@ export const loader = async () => {
 };
 
 export default function Index() {
-  const user = useOptionalUser();
   const shouldReduceMotion = useReducedMotion();
   const { posts } = useLoaderData();
   let containerRef = useRef();
@@ -170,37 +153,35 @@ export default function Index() {
             >
               {}
               {isInView &&
-                posts.slice(0,3).map((post,i) => (
-                  <>
-                    <div
-                      ref={containerRef}
-                      key={post.slug}
-                      className="col-span-4 mb-10 animate-fade-in "
+                posts.slice(0, 3).map((post) => (
+                  <div
+                    ref={containerRef}
+                    key={JSON.stringify(post)}
+                    className="col-span-4 mb-10 animate-fade-in "
+                  >
+                    <Link
+                      to={`/posts/${post.slug}`}
+                      className="relative w-full"
                     >
-                      <Link
-                        to={`/posts/${post.slug}`}
-                        className="relative w-full"
-                      >
-                        <div className="group peer relative block w-full focus:outline-none">
-                          <div className="aspect-h-4 aspect-w-3 rounded-lg">
-                            <img
-                              className="focus-ring w-full rounded-lg object-cover object-center transition"
-                              src={`/uploads/${post.imageUrl}`}
-                              alt=""
-                            />
-                          </div>
-                          <div className="mt-8 text-xl font-medium text-slate-800 dark:text-slate-300">
-                            {formatDate(parseISO(post.createdAt), "PPP", {
-                              locale: esLocale,
-                            })}
-                          </div>
-                          <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
-                            {post.title}
-                          </div>
+                      <div className="group peer relative block w-full focus:outline-none">
+                        <div className="aspect-h-4 aspect-w-3 rounded-lg">
+                          <img
+                            className="focus-ring w-full rounded-lg object-cover object-center transition"
+                            src={`/uploads/${post.imageUrl}`}
+                            alt=""
+                          />
                         </div>
-                      </Link>
-                    </div>
-                  </>
+                        <div className="mt-8 text-xl font-medium text-slate-800 dark:text-slate-300">
+                          {formatDate(parseISO(post.createdAt), "PPP", {
+                            locale: esLocale,
+                          })}
+                        </div>
+                        <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
+                          {post.title}
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
                 ))}
             </div>
           </div>

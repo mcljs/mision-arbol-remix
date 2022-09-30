@@ -22,7 +22,7 @@ import {
 } from "~/models/post.server";
 import invariant from "tiny-invariant";
 import { requireAdminUser } from "~/session.server";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Field, Input } from "../../../components/FormElements/FormElements";
 
 export const loader = async ({ request, params }) => {
@@ -98,18 +98,15 @@ export const action = async ({ request, params }) => {
   return redirect("/posts/admin");
 };
 
-
 export default function NewPostRoute() {
   const data = useLoaderData();
   const errors = useActionData();
   const [image, setImage] = useState(null);
-  console.log(image);
 
   // useEffect(() => {
   //   blah();
   // });
 
-  const formRef = useRef();
   const transition = useTransition();
   const isCreating = transition.submission?.formData.get("intent") === "create";
   const isUpdating = transition.submission?.formData.get("intent") === "update";
@@ -149,6 +146,7 @@ export default function NewPostRoute() {
         type="text"
         name="slug"
         label="Post Slug:"
+        id="slugInput"
         placeholder={slug}
         defaultValue={data.post?.slug}
         onChange={handleChange}
@@ -162,31 +160,37 @@ export default function NewPostRoute() {
         defaultValue={data.post?.description}
         error={errors?.description ? errors.description : null}
       />
-      <label
-        htmlFor="file-upload"
-        className=" mt-5 cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-      >
-        <span>Upload a file</span>
-        <input id="upload" name="upload" type="file" onChange={changeHandler} />
-        {image}
-      </label>
-      <p>
-        <label htmlFor="imageUrl">
-          {errors?.imageUrl ? (
-            <em className="text-red-600">{errors.imageUrl}</em>
-          ) : null}
+      {isNewPost && (
+        <label
+          htmlFor="file-upload"
+          className=" mt-5 cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+        >
+          <span>Upload a file</span>
+          <input
+            id="upload"
+            name="upload"
+            type="file"
+            onChange={changeHandler}
+          />
+          {image}
         </label>
-        <input
-          id="imageUrl"
-          type="text"
-          name="imageUrl"
-          className="sr-only"
-          value={image}
-          defaultValue={data.post?.imageUrl}
-        />
-      </p>
+      )}
 
-      <p className="my-5">
+      <label htmlFor="imageUrl">
+        {errors?.imageUrl ? (
+          <em className="text-red-600">{errors.imageUrl}</em>
+        ) : null}
+      </label>
+      <input
+        id="imageUrl"
+        type="text"
+        name="imageUrl"
+        className="sr-only"
+        value={image}
+        defaultValue={data.post?.imageUrl}
+      />
+
+      <div className="my-5">
         <label
           className="block text-sm font-medium text-gray-900"
           htmlFor="markdown"
@@ -195,7 +199,7 @@ export default function NewPostRoute() {
           <a
             href="https://www.markdownguide.org/basic-syntax/"
             target="_blank"
-            className="text-primary-600 hover:text-primary-400 group relative underline"
+            className="group relative text-primary-600 underline hover:text-primary-400"
             rel="noreferrer"
           >
             <div className="absolute bottom-2 left-0 right-0 mb-6 -ml-4 -mr-4 flex hidden flex-col items-center group-hover:flex">
@@ -216,7 +220,7 @@ export default function NewPostRoute() {
           defaultValue={data.post?.markdown}
           type="textarea"
         />
-      </p>
+      </div>
       <div className="flex justify-end gap-4">
         {isNewPost ? null : (
           <button

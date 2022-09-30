@@ -27,7 +27,6 @@ export const loader = async () => {
 export default function PostsRoute() {
   const { books } = useLoaderData();
   const adminUser = useOptionalAdminUser();
-  console.log(books);
   return (
     <main>
       {adminUser ? (
@@ -37,7 +36,6 @@ export default function PostsRoute() {
       ) : null}
       <ul className="h-screen">
         <div className="relative px-4 pt-16 pb-20 dark:bg-slate-900 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">
-       
           <div className="relative mx-auto max-w-7xl">
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
@@ -46,17 +44,14 @@ export default function PostsRoute() {
             </div>
             <div className="grid gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-3">
               {books.map((book) => (
-                <div key={book.id}>
+                <div key={JSON.stringify(book)}>
                   <div className="card-content relative my-0 overflow-hidden rounded-lg border border-gray-300 p-2 transition-all duration-300 hover:border-gray-300 md:border-transparent">
-                    <Link
-                      className="cursor-pointer rounded-lg"
-                      to={book.slug}
-                    >
+                    <Link className="cursor-pointer rounded-lg" to={book.slug}>
                       <div
                         className="cursor-pointer"
                         style={{ aspectRatio: "1 / 1.6" }}
                       >
-                        <div className="h-full w-full" style={{}}>
+                        <div className="h-full w-full">
                           <img
                             src={`/books/${book.imageUrl}`}
                             alt=""
@@ -66,9 +61,7 @@ export default function PostsRoute() {
                       </div>
                     </Link>
                     <div className="card-info absolute left-0 right-0 top-0 flex items-center justify-between p-3">
-                      <div className="flex items-stretch">
-                        
-                      </div>
+                      <div className="flex items-stretch"></div>
                       <div>
                         <div className="inline-flex items-center rounded-full border border-transparent bg-white p-1">
                           <svg
@@ -89,13 +82,12 @@ export default function PostsRoute() {
                       </div>
                     </div>
                   </div>
-                  <div class="justify-right flex items-center justify-end py-3 dark:text-white">
-                    <span class="font-semibold">{book.author}</span>
+                  <div className="justify-right flex items-center justify-end py-3 dark:text-white">
+                    <span className="font-semibold">{book.author}</span>
                   </div>
                 </div>
               ))}
             </div>
-          
           </div>
         </div>
       </ul>

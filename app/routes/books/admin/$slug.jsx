@@ -22,7 +22,7 @@ import {
 } from "~/models/book.server";
 import invariant from "tiny-invariant";
 import { requireAdminUser } from "~/session.server";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Field, Input } from "../../../components/FormElements/FormElements";
 
 export const loader = async ({ request, params }) => {
@@ -162,6 +162,7 @@ export default function NewPostRoute() {
         name="slug"
         label="Post Slug:"
         placeholder={slug}
+        id="slugInput"
         defaultValue={data.post?.slug}
         onChange={handleChange}
         error={errors?.slug ? errors.slug : null}

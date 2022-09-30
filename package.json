@@ -1,5 +1,5 @@
 {
-  "name": "indie-stack-template",
+  "name": "mision-arbol",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -51,6 +51,7 @@
     "react-ga": "^3.3.1",
     "react-share": "^4.4.0",
     "remix-seo": "^0.1.0",
+    "remix-utils": "^3.3.0",
     "spin-delay": "^1.2.0",
     "tiny-invariant": "^1.2.0"
   },
