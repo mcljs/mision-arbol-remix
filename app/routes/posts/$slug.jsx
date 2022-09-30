@@ -9,30 +9,36 @@ import parseISO from "date-fns/parseISO";
 import esLocale from "date-fns/locale/es";
 import Link from "../../components/Link";
 
-
 export const meta = ({ data }) => {
-
   return {
     ...getSeoMeta({
       title: data.title,
       description: data.description,
       openGraph: {
-        type: "article",
+        images: [
+          {
+            alt: "Misión Arbol - @fundamiarbolven",
+            image: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
+            height: 630,
+            width: 1200,
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        image: {
+          alt: data.title,
+          image: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
+        },
       },
     }),
-    "flyyer:content": data.description,
-    "flyyer:date": new Date(data.createdAt).toISOString(),
-    "flyyer:image": `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
-    "twitter:image": `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
     "og:image": `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
-    "flyyer:title": data.title,
     "og:image:alt": data.title,
-    "twitter:image:alt": data.title,
     "article:published_time": new Date(data.createdAt).toISOString(),
     "article:modified_time": new Date(data.updatedAt).toISOString(),
   };
 };
-
 
 export const loader = async ({ params }) => {
   const { slug } = params;

@@ -60,7 +60,6 @@ export const handle = {
 };
 
 export const meta = () => {
-
   return {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
@@ -187,16 +186,28 @@ export const loader = async ({ request }) => {
 
 function App() {
   const [theme] = useTheme();
-  React.useEffect(() => {
-    ReactGA.initialize("G-SG8RM3MQST");
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
   return (
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
         <Meta />
         <Links />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-VGW41JSE5N"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VGW41JSE5N', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
       </head>
       <body className="duration-50 h-full bg-slate-100  text-slate-900 transition dark:bg-gray-900">
         <PageLoadingMessage />
