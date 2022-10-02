@@ -25,7 +25,7 @@ const navigation = [
 
 export default function Footer() {
   return (
-    <footer className="">
+    <footer>
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex justify-center space-x-6 md:order-2">
           {navigation.map((item) => (
@@ -34,7 +34,7 @@ export default function Footer() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gray-500 dark:text-gray-100 dark:hover:text-gray-200"
+              className="text-black hover:text-slate-800 dark:text-gray-100 dark:hover:text-gray-200"
             >
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -42,7 +42,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
-          <p className="text-center text-base text-gray-400 dark:text-gray-100">
+          <p className="text-center text-base text-slate-900 dark:text-gray-100">
             &copy; 2022 Fundación Misión Árbol, Ministerio del Poder Popular
             para el Ecosocialismo.
           </p>

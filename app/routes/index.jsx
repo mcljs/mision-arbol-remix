@@ -12,6 +12,7 @@ import { CallToAction } from "../components/CallToAction";
 import { useRef } from "react";
 import BannerNotiArbol from "../components/BannerNotiArbol";
 import { Reviews } from "../components/Review";
+import SkeletonImage from "../components/SkeletonImage";
 
 export const handle = {
   getSitemapEntries() {
@@ -139,7 +140,7 @@ export default function Index() {
       <div className="relative  py-16 sm:py-24 lg:py-32">
         <div className="relative">
           <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-            <h2 className="text-base font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">
+            <h2 className="text-base font-semibold uppercase tracking-wider text-[#008300] dark:text-green-400">
               Actualidad
             </h2>
             <p className="mt-2 text-3xl font-medium tracking-tight text-gray-900 dark:text-slate-100 sm:text-5xl">
@@ -151,38 +152,37 @@ export default function Index() {
               ref={containerRef}
               className="relative mx-auto mt-20 grid max-w-7xl grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6"
             >
-              {}
-              {isInView &&
-                posts.slice(0, 3).map((post) => (
-                  <div
-                    ref={containerRef}
-                    key={JSON.stringify(post)}
-                    className="col-span-4 mb-10 animate-fade-in "
-                  >
-                    <Link
-                      to={`/posts/${post.slug}`}
-                      className="relative w-full"
-                    >
-                      <div className="group peer relative block w-full focus:outline-none">
-                        <div className="aspect-h-4 aspect-w-3 rounded-lg">
+              {posts.slice(0, 3).map((post) => (
+                <div
+                  ref={containerRef}
+                  key={JSON.stringify(post)}
+                  className="col-span-4 mb-10 animate-fade-in "
+                >
+                  <Link to={`/posts/${post.slug}`} className="relative w-full">
+                    <div className="group peer relative block w-full focus:outline-none">
+                      <SkeletonImage
+                        className="aspect-h-4 aspect-w-3 rounded-lg transition duration-300 hover:ring-2    hover:ring-secondary-900 hover:ring-offset-2 focus:outline-none disabled:opacity-50 disabled:ring-slate-100   dark:hover:ring-slate-50"
+                        img={
                           <img
-                            className="focus-ring w-full rounded-lg object-cover object-center transition"
                             src={`/uploads/${post.imageUrl}`}
                             alt=""
+                            className="focus-ring w-full rounded-lg object-cover object-center transition"
                           />
-                        </div>
-                        <div className="mt-8 text-xl font-medium text-slate-800 dark:text-slate-300">
-                          {formatDate(parseISO(post.createdAt), "PPP", {
-                            locale: esLocale,
-                          })}
-                        </div>
-                        <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
-                          {post.title}
-                        </div>
+                        }
+                      />
+
+                      <div className="mt-8 text-xl font-medium text-slate-800 dark:text-slate-300">
+                        {formatDate(parseISO(post.createdAt), "PPP", {
+                          locale: esLocale,
+                        })}
                       </div>
-                    </Link>
-                  </div>
-                ))}
+                      <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
+                        {post.title}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
 

@@ -15,7 +15,7 @@ const features = [
     icon: "/vertices/vertice2.png",
   },
   {
-    name: "Trade in real-time",
+    name: "Desarrollo sustentable y hábitat sostenible",
     description:
       "Contribuir al desarrollo sustentable/sostenible mediante acciones productivas, científicas, económicas, sociales, que garanticen el uso equilibrado de los recursos naturales, combatir la crisis climática y proteger los Derechos de la Madre Tierra.",
     icon: "/vertices/vertice3.png",

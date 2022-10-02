@@ -8,6 +8,7 @@ import formatDate from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 import esLocale from "date-fns/locale/es";
 import Link from "../../components/Link";
+import SkeletonImage from "../../components/SkeletonImage";
 
 export const meta = ({ data }) => {
   return {
@@ -78,16 +79,21 @@ export default function PostRoute({ twitterHandle }) {
         </div>
 
         <figure>
-          <img
+          <SkeletonImage
             className="my-4 mx-auto w-full max-w-screen-md rounded-lg"
-            src={`/uploads/${imageUrl}`}
-            alt=""
-            width={1310}
-            height={873}
+            img={
+              <img
+                className="rounded-lg"
+                src={`/uploads/${imageUrl}`}
+                alt=""
+                width={1310}
+                height={873}
+              />
+            }
           />
         </figure>
         <div
-          className="prose prose-lg prose-indigo mx-auto mt-6 pb-20 text-secondary-700 dark:prose-invert dark:text-white"
+          className="prose prose-lg prose-indigo mx-auto mt-6 px-4 pb-20 text-secondary-700 dark:prose-invert dark:text-white lg:px-0"
           dangerouslySetInnerHTML={{ __html: html }}
         />
         <img

@@ -109,7 +109,7 @@ export default function BookRoute() {
                     <div className>
                       <button
                         type="button"
-                        className=" inline-flex items-center rounded-md border-2 border-transparent bg-primary-500 px-6 py-3 text-base font-medium font-semibold text-secondary-900 shadow-sm transition transition duration-300 duration-300 hover:bg-primary-200  hover:ring-2 hover:ring-2  hover:ring-primary-500  hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-2 focus:outline-none focus:outline-none disabled:opacity-50 disabled:opacity-50  disabled:ring-primary-500  disabled:ring-primary-500"
+                        className=" inline-flex items-center rounded-md border-2 border-transparent bg-primary-500 px-6 py-3 text-base font-medium  text-secondary-900 shadow-sm transition duration-300 hover:bg-primary-200  hover:ring-2    hover:ring-primary-500 hover:ring-offset-2 focus:outline-none disabled:opacity-50   disabled:ring-primary-500"
                       >
                         <div
                           className="-ml-0.5  mr-3 h-5 w-5"
