@@ -43,6 +43,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
+    "feed": "^4.2.2",
     "framer-motion": "^7.4.0",
     "marked": "^4.1.0",
     "moment": "^2.29.4",

@@ -173,6 +173,18 @@ export const links = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: styles },
+    {
+      href: "/posts/rss.xml",
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: "Mision Arbol Noticias RSS Feed",
+    },
+    {
+      href: "/posts.json",
+      rel: "alternate",
+      type: "application/json",
+      title: "Mision Arbol Noticias JSON Feed",
+    },
     ...seoLinks,
   ];
 };
