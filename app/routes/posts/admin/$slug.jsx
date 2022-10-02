@@ -145,7 +145,7 @@ export default function NewPostRoute() {
       <Field
         type="text"
         name="slug"
-        label="Post Slug:"
+        label="Post Slug: (Esto se usa para la url y se genera automaticamente)"
         id="slugInput"
         placeholder={slug}
         defaultValue={data.post?.slug}
@@ -165,7 +165,7 @@ export default function NewPostRoute() {
           htmlFor="file-upload"
           className=" mt-5 cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
         >
-          <span>Upload a file</span>
+          <span>Subir imagen</span>
           <input
             id="upload"
             name="upload"
@@ -195,7 +195,7 @@ export default function NewPostRoute() {
           className="block text-sm font-medium text-gray-900"
           htmlFor="markdown"
         >
-          You can use{" "}
+          Puede usar la
           <a
             href="https://www.markdownguide.org/basic-syntax/"
             target="_blank"
@@ -204,11 +204,12 @@ export default function NewPostRoute() {
           >
             <div className="absolute bottom-2 left-0 right-0 mb-6 -ml-4 -mr-4 flex hidden flex-col items-center group-hover:flex">
               <span className="whitespace-no-wrap relative z-10 rounded-md bg-black p-2 text-xs leading-tight text-white shadow-lg">
-                Use simple markdown to format your text. Click to know more.
+                Utilice Markdown simple para dar formato a su texto. Haga clic
+                para saber más.
               </span>
               <div className="-mt-2 h-3 w-3 rotate-45 bg-black" />
             </div>
-            Markdown syntax
+            sintaxis de Markdown para dar formato a su publicación.
           </a>
           {errors?.markdown ? (
             <em className="text-red-600">{errors.markdown}</em>
@@ -230,7 +231,7 @@ export default function NewPostRoute() {
             className="rounded bg-red-500 py-2 px-4 text-white hover:bg-red-600 focus:bg-red-400 disabled:bg-red-300"
             disabled={isDeleting}
           >
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? "Borrando..." : "Borrar"}
           </button>
         )}
         <button
@@ -240,8 +241,8 @@ export default function NewPostRoute() {
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
           disabled={isCreating || isUpdating}
         >
-          {isNewPost ? (isCreating ? "Creating..." : "Create Post") : null}
-          {isNewPost ? null : isUpdating ? "Updating..." : "Update"}
+          {isNewPost ? (isCreating ? "Creando..." : "Crear Publicacion") : null}
+          {isNewPost ? null : isUpdating ? "Modificando..." : "Modificar"}
         </button>
       </div>
     </Form>
