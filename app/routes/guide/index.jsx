@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
 import { especies } from "../../data/especies";
 import { EspList } from "../../components/EspList";
 import { Tab } from '@headlessui/react'
 import { getSeo } from "~/utils/seo";
+import { Container } from "../../components/Container";
 
 const [seoMeta, seoLinks] = getSeo({
   title: "Mision Arbol - Guía de Especies",
@@ -32,7 +32,7 @@ export const loader = async () => {
 };
 
 export default function Posts() {
-  const { data } = useLoaderData();
+
 
   let [categories] = useState({
     Forestales: [
@@ -65,7 +65,7 @@ export default function Posts() {
         
         </div>
       </div>
-      <div className="px-20 py-16 sm:px-40">
+      <Container>
         <Tab.Group>
           <Tab.List className="flex space-x-2 rounded-xl bg-blue-900/20 p-1">
             {Object.keys(categories).map((category) => (
@@ -95,7 +95,7 @@ export default function Posts() {
             ))}
           </Tab.Panels>
         </Tab.Group>
-      </div>
+      </Container>
       {/* ------------ Books Section ------------ */}
     </div>
   );

@@ -46,7 +46,7 @@ Desarrollo
                 href="https://drive.google.com/file/d/19cog2N9LxE93-sD85pPV8EakNNZLCmia/view"
                 target={`_blank`}
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center rounded-md border border-transparent bg-primary-900 px-4 py-2 text-sm font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="mt-6 inline-flex items-center rounded-md border border-transparent btn-Green px-4 py-2 text-sm font-medium text-white dark:text-slate-900 shadow-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Descargar
               </a>

@@ -162,7 +162,7 @@ function PageLoadingMessage() {
               </motion.span>
             </div>
           </AnimatePresence>
-          <span className=" truncate text-slate-200">path: {pendingPath}</span>
+          <span className=" truncate text-slate-200">ruta: {pendingPath}</span>
         </div>
       </div>
     </NotificationMessage>

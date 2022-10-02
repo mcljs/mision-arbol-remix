@@ -53,7 +53,7 @@ export default function PostSlug() {
               className="mx-auto -mt-16  block h-48 w-48 bg-cover bg-center shadow-xl lg:hidden"
               alt="img"
             />
-            <span class="mb-2 inline-block rounded-full bg-green-600 py-1 px-2  text-xs font-bold tracking-widest text-white">
+            <span className="mb-2 inline-block rounded-full bg-green-600 py-1 px-2  text-xs font-bold tracking-widest text-white">
               {data.publisher}
             </span>
             <h1 className="pt-8 text-3xl font-bold dark:text-white lg:pt-0">

@@ -30,7 +30,7 @@ const EspeciesCard = ({
         </p>
         <div className="flex flex-wrap items-center ">
           <Link
-            className="dark:text-yellow-1100 inline-flex items-center text-green-800 md:mb-2 lg:mb-0"
+            className="dark:text-yellow-1100 inline-flex items-center text-green-800 dark:text-primary-700 md:mb-2 lg:mb-0"
             to={`/guide/${id}`}
           >
             Leer Mas
@@ -38,10 +38,10 @@ const EspeciesCard = ({
               className="ml-2 h-4 w-4"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              strokeWidth="2"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M5 12h14"></path>
               <path d="M12 5l7 7-7 7"></path>

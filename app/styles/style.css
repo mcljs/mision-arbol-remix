@@ -8,6 +8,16 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5fab', endColorstr='#f1f1f1',GradientType=1 );
   }
 
+  .btn-Green, .btn-green {
+    background: -webkit-linear-gradient(right,#95ca3e 0%,#95ca3e 50%,#85c638 100%);
+    background: -moz-linear-gradient(right,#95ca3e 0%,#95ca3e 50%,#85c638 100%);
+    background: -o-linear-gradient(right,#95ca3e 0%,#95ca3e 50%,#85c638 100%);
+    background: -ms-linear-gradient(right,#95ca3e 0%,#95ca3e 50%,#85c638 100%);
+    background: linear-gradient(to left,#95ca3e 0%,#95ca3e 50%,#85c638 100%);
+    -webkit-box-shadow: 0 1px 1px 0 #58902d;
+    box-shadow: 0 1px 1px 0 #58902d;
+}
+
   @media screen and (max-width: 899px) {
     .noticias .listado {
         display: none;

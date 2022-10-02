@@ -80,7 +80,7 @@ export default function PostRoute({ twitterHandle }) {
 
         <figure>
           <SkeletonImage
-            className="my-4 mx-auto w-full max-w-screen-md rounded-lg"
+            className="my-4 mx-auto w-full max-w-screen-md rounded-lg lg:px-0 px-4"
             img={
               <img
                 className="rounded-lg"
