@@ -31,6 +31,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^1.0.6",
+    "@next-boost/hybrid-disk-cache": "^0.3.0",
     "@prisma/client": "^4.4.0",
     "@remix-run/node": "^1.7.2",
     "@remix-run/react": "^1.7.2",
@@ -43,6 +44,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
+    "error-stack-parser": "^2.1.4",
     "feed": "^4.2.2",
     "framer-motion": "^7.4.0",
     "marked": "^4.1.0",
@@ -51,6 +53,7 @@
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
     "react-share": "^4.4.0",
+    "remix-image": "^1.4.0",
     "remix-seo": "^0.1.0",
     "remix-utils": "^3.3.0",
     "spin-delay": "^1.2.0",
