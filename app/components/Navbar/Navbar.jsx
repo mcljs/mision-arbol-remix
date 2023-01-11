@@ -121,8 +121,12 @@ function Navbar() {
         <nav>
           <Container className="relative z-50 flex justify-between py-8">
             <div className="relative z-10 flex items-center gap-16">
-              <Link href="/" aria-label="Home">
-                <img className="h-10 w-auto" src="/logo.png" alt="" />
+              <Link
+                prefetch="intent"
+                to="/"
+                className="text-slate-900 dark:text-slate-100 underlined block whitespace-nowrap text-2xl font-medium transition focus:outline-none"
+              >
+                <h1>Misión Árbol</h1>
               </Link>
               <div className="hidden lg:flex lg:gap-10">
                 <NavLinks />
@@ -171,7 +175,7 @@ function Navbar() {
                               y: -32,
                               transition: { duration: 0.2 },
                             }}
-                            className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 dark:bg-slate-900 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+                            className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20 dark:bg-slate-900"
                           >
                             <div className="space-y-4">
                               <MobileNavLink href="/">Inicio</MobileNavLink>

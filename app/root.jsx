@@ -40,7 +40,7 @@ export const handle = {
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        image: `${externalLinks.self}/seoInit.jpeg`,
+        image: `${externalLinks.self}seoInit.jpeg`,
         name: "Mision Arbol",
         sameAs: [
           externalLinks.githubSourceCode,
@@ -67,17 +67,7 @@ export const meta = () => {
     ...seoMeta,
     ...getSeoMeta({
       description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-      openGraph: {
-        images: [
-          {
-            alt: "Misión Arbol - @fundamiarbolven",
-            image: `${externalLinks.self}/seoInit.jpeg`,
-            height: 630,
-            width: 1200,
-          },
-        ],
-        type: "website",
-      },
+
       twitter: {
         card: "summary_large_image",
         image: {
