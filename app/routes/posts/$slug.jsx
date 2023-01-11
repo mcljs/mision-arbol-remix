@@ -19,9 +19,7 @@ export const meta = ({ data }) => {
         images: [
           {
             alt: "Misión Arbol - @fundamiarbolven",
-            image: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
-            height: 630,
-            width: 1200,
+            image: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`
           },
         ],
         type: "website",
@@ -109,7 +107,7 @@ export default function PostRoute({ twitterHandle }) {
           <div className="mt-4 flex flex-wrap items-center justify-center">
             <Link
               target="_blank"
-              href={`https://twitter.com/intent/tweet?url=https://misionarbol.minec.gob.ve/posts/${slug}`}
+              href={`https://twitter.com/intent/tweet?url=https://misionarbol.minec.gob.ve/posts/${slug}/`}
               className="m-1 flex items-center rounded-lg bg-gray-100 py-2 px-3 leading-6 transition-colors duration-200 ease-in-out hover:bg-gray-200 dark:bg-[#132035]"
             >
               <svg
