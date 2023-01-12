@@ -59,7 +59,7 @@ export function ThemeProvider({
 
     themeFetcherRef.current.submit(
       { theme },
-      { method: "post", action: "_action/set-theme" }
+
     );
   }, [theme]);
 
