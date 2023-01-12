@@ -68,7 +68,12 @@ export const meta = () => {
     ...seoMeta,
     ...getSeoMeta({
       description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-
+      additionalLinkTags: [
+        {
+          rel: "icon",
+          href: `${externalLinks.self}/favicon.ico`,
+        },
+      ],
       twitter: {
         card: "summary_large_image",
         image: {
@@ -163,6 +168,11 @@ export const links = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: styles },
+    {
+      rel: "icon",
+      href: `${externalLinks.self}favicon.ico`,
+    },
+    {rel: 'manifest', href: '/site.webmanifest'},
     {
       href: "/posts/rss.xml",
       rel: "alternate",

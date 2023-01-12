@@ -18,6 +18,7 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
       href: `${externalLinks.self}/favicon.ico`,
     },
   ],
+
   twitter: {
     card: "summary_large_image",
     creator: {
