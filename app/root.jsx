@@ -198,7 +198,7 @@ function App() {
     }
   }, [location, gaTrackingId]);
   return (
-    <html lang="en">
+    <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
         <Meta />
@@ -276,7 +276,6 @@ export function CatchBoundary() {
                     src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
                     sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
                     crossOrigin="anonymous"
-                    alt=""
                     decoding="async"
                   />
                 </a>
