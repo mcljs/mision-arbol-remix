@@ -211,6 +211,7 @@ function App() {
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
+        <meta name="google-site-verification" content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64" />
         <Meta />
         <Links />
       </head>
