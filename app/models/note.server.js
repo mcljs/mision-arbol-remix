@@ -1,4 +1,4 @@
-import { prisma } from "~/db.server";
+import { prisma } from "../db.server";
 
 export function getNote({ id, userId }) {
   return prisma.note.findFirst({

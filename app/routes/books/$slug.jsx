@@ -1,9 +1,9 @@
 import { marked } from "marked";
 import { json } from "@remix-run/node";
 import { useCatch, useLoaderData, useParams } from "@remix-run/react";
-import { getBook } from "~/models/book.server";
+import { getBook } from "../../models/book.server";
 import invariant from "tiny-invariant";
-import { getSeoMeta } from "~/utils/seo";
+import { getSeoMeta } from "../../utils/seo";
 
 export const meta = ({ data, parentsData }) => {
   return {

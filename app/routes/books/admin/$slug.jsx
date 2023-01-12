@@ -19,9 +19,9 @@ import {
   deleteBook,
   getBook,
   updateBook,
-} from "~/models/book.server";
+} from "../../../models/book.server";
 import invariant from "tiny-invariant";
-import { requireAdminUser } from "~/session.server";
+import { requireAdminUser } from "../../../session.server";
 import { useState } from "react";
 import { Field, Input } from "../../../components/FormElements/FormElements";
 

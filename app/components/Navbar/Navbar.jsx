@@ -2,7 +2,7 @@ import React from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { AnnotationIcon, ChatAlt2Icon, XIcon } from "@heroicons/react/outline";
 import Link from "../Link";
-import { useOptionalUser } from "~/utils";
+import { useOptionalUser } from "../../utils";
 import clsx from "clsx";
 import { ClientOnly } from "../client-only";
 import ThemeToggle, { SsrPlaceholder } from "../theme-toggle";
@@ -124,9 +124,16 @@ function Navbar() {
               <Link
                 prefetch="intent"
                 to="/"
-                className="text-slate-900 dark:text-slate-100 underlined block whitespace-nowrap text-2xl font-medium transition focus:outline-none"
+              
               >
-                <h1>Misión Árbol</h1>
+                <img
+                  loading="lazy"
+                  className="h-16 -mt-6 w-auto"
+                  alt="Logo"
+                  src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
+                  sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
+                  crossOrigin="anonymous"
+                />
               </Link>
               <div className="hidden lg:flex lg:gap-10">
                 <NavLinks />

@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { getBookListings } from "~/models/book.server";
-import { useOptionalAdminUser } from "~/utils";
-import { getSeo } from "~/utils/seo";
+import { getBookListings } from "../../models/book.server";
+import { useOptionalAdminUser } from "../../utils";
+import { getSeo } from "../../utils/seo";
 
 const [seoMeta, seoLinks] = getSeo({
   title: "Mision Arbol - Libros",

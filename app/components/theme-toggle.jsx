@@ -1,7 +1,7 @@
 import * as React from "react";
-import MoonSvg from "~/assets/icons/moon.svg";
-import LightBulbSvg from "~/assets/icons/light-bulb.svg";
-import { Theme, useTheme } from "~/utils/theme";
+import MoonSvg from "../assets/icons/moon.svg";
+import LightBulbSvg from "../assets/icons/light-bulb.svg";
+import { Theme, useTheme } from "../utils/theme";
 
 export function preloadSvg() {
   return [

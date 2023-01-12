@@ -153,7 +153,6 @@ function PageLoadingMessage() {
               </motion.span>
             </div>
           </AnimatePresence>
-          <span className=" truncate text-slate-200">ruta: {pendingPath}</span>
         </div>
       </div>
     </NotificationMessage>
@@ -199,7 +198,7 @@ function App() {
     }
   }, [location, gaTrackingId]);
   return (
-    <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
+    <html lang="en">
       <head>
         <ThemeMeta />
         <Meta />
@@ -236,7 +235,7 @@ function App() {
         <ScrollRestoration />
         <Footer />
         <Scripts />
-        {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
+        <LiveReload />
       </body>
     </html>
   );
@@ -268,8 +267,18 @@ export function CatchBoundary() {
             <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-6 lg:px-8">
               <div className="flex flex-shrink-0 justify-center">
                 <a href="/" className="inline-flex">
-                  <span className="sr-only">Your Company</span>
-                  <img className="h-20 w-20" src="/logo.png" alt="" />
+                  <span className="sr-only">Logo</span>
+
+                  <img
+                    loading="lazy"
+                    className="mx-auto h-20 w-auto"
+                    alt="Logo"
+                    src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
+                    sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
+                    crossOrigin="anonymous"
+                    alt=""
+                    decoding="async"
+                  />
                 </a>
               </div>
               <div className="py-16">

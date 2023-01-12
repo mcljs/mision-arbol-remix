@@ -19,7 +19,8 @@ export const meta = ({ data }) => {
         images: [
           {
             alt: "Misión Arbol - @fundamiarbolven",
-            image: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`
+            url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`
+            
           },
         ],
         type: "website",
@@ -28,7 +29,7 @@ export const meta = ({ data }) => {
         card: "summary_large_image",
         image: {
           alt: data.title,
-          image: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
+          url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
         },
       },
     }),

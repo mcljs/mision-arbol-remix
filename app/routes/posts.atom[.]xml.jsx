@@ -1,4 +1,4 @@
-import { GenerateFeed } from "~/utils/feed.server";
+import { GenerateFeed } from "../utils/feed.server";
 
 export const loader = async ({ request }) => {
   const feed = await GenerateFeed(request);

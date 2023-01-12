@@ -1,6 +1,7 @@
 import { Feed } from "feed";
 import { json } from "@remix-run/node";
-import { getPostListings } from "~/models/post.server";
+import { getPostListings } from "../models/post.server";
+
 
 import { getDomainUrl } from "./misc";
 

@@ -7,8 +7,12 @@ const Periodico = () => {
       <div className="mx-auto grid max-w-screen-md grid-cols-1 gap-5 px-5 pt-20 pb-24 sm:pt-28">
         <div className="mx-auto w-48">
           <img
-            src="logo.png"
-            alt="logo"
+            loading="lazy"
+            className="w-full rounded-sm object-contain"
+            alt="Logo"
+            src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
+            sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
+            crossOrigin="anonymous"
           />
         </div>
         <h1 className="text-center text-2xl font-bold leading-tight dark:text-white sm:text-3xl lg:text-4xl">

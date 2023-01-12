@@ -1,7 +1,7 @@
 import { Link, Outlet, useLoaderData, Form, NavLink } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { getBookListings } from "~/models/book.server";
-import { useUser } from "~/utils";
+import { getBookListings } from "../../models/book.server";
+import { useUser } from "../../utils";
 
 export const loader = async () => {
   return json({ books: await getBookListings() });

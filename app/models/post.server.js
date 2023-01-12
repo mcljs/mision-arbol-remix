@@ -1,4 +1,4 @@
-import { prisma } from "~/db.server";
+import { prisma } from "../db.server";
 
 export async function getPostListings() {
   return prisma.post.findMany({});
