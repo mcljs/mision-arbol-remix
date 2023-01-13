@@ -169,7 +169,6 @@ export const links = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: styles },
-    { rel: "stylesheet", href: noScriptStyles },
     {
       rel: "icon",
       href: `${externalLinks.self}favicon.ico`,
