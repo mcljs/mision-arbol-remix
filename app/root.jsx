@@ -71,14 +71,14 @@ export const meta = () => {
       additionalLinkTags: [
         {
           rel: "icon",
-          href: `${externalLinks.self}/favicon.ico`,
+          href: `${externalLinks.self}favicon.ico`,
         },
       ],
       twitter: {
         card: "summary_large_image",
         image: {
           alt: "Misión Arbol - @fundamiarbolven",
-          image: `${externalLinks.self}/seoInit.jpeg`,
+          url: `${externalLinks.self}seoInit.jpeg`,
         },
       },
     }),

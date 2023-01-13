@@ -15,7 +15,7 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
   additionalLinkTags: [
     {
       rel: 'icon',
-      href: `${externalLinks.self}/favicon.ico`,
+      href: `${externalLinks.self}favicon.ico`,
     },
   ],
 
@@ -34,7 +34,7 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
 
     images: [
       {
-        image: `${externalLinks.self}/seoInit.jpeg`,
+        url: `${externalLinks.self}seoInit.jpeg`,
         width: 1200,
         height: 630,
         alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
