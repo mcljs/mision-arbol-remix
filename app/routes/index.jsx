@@ -5,9 +5,7 @@ import { motion, useReducedMotion, useInView } from "framer-motion";
 import { getSeoMeta } from "~/utils/seo";
 import { json } from "@remix-run/node";
 import { getPostListings } from "../models/post.server";
-import formatDate from "date-fns/format";
-import parseISO from "date-fns/parseISO";
-import esLocale from "date-fns/locale/es";
+import { formatDate } from "../utils/misc";
 import { CallToAction } from "../components/CallToAction";
 import { useRef } from "react";
 import BannerNotiArbol from "../components/BannerNotiArbol";
@@ -173,9 +171,7 @@ export default function Index() {
                       />
 
                       <div className="mt-8 text-xl font-medium text-slate-800 dark:text-slate-300">
-                        {formatDate(parseISO(post.createdAt), "PPP", {
-                          locale: esLocale,
-                        })}
+                        {formatDate(post.createdAt)}
                       </div>
                       <div className="mt-4 text-2xl font-medium text-black dark:text-white md:text-3xl">
                         {post.title}

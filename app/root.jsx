@@ -18,6 +18,7 @@ import { SsrTheme, ThemeMeta, ThemeProvider, useTheme } from "./utils/theme";
 import { getThemeSession } from "./utils/theme-session.server";
 import * as gtag from "./utils/gtags.client";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
+import noScriptStyles from "./styles/no-script.css";
 import { getUser } from "./session.server";
 import Navbar from "./components/Navbar";
 import { useSpinDelay } from "spin-delay";
@@ -168,11 +169,12 @@ export const links = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: styles },
+    { rel: "stylesheet", href: noScriptStyles },
     {
       rel: "icon",
       href: `${externalLinks.self}favicon.ico`,
     },
-    {rel: 'manifest', href: '/site.webmanifest'},
+    { rel: "manifest", href: "/site.webmanifest" },
     {
       href: "/posts/rss.xml",
       rel: "alternate",
@@ -211,9 +213,15 @@ function App() {
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
-        <meta name="google-site-verification" content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64" />
+        <meta
+          name="google-site-verification"
+          content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64"
+        />
         <Meta />
         <Links />
+        <noscript>
+          <link rel="stylesheet" href={noScriptStyles} />
+        </noscript>
       </head>
       <body className="duration-50  bg-slate-100  text-slate-900 transition dark:bg-gray-900">
         {gaTrackingId ? null : (

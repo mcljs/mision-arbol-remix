@@ -53,7 +53,7 @@ export default function Footer() {
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
           <p className="text-center text-base text-slate-900 dark:text-gray-100">
-            &copy; 2022 Fundación Misión Árbol, Ministerio del Poder Popular
+            &copy; 2023 Fundación Misión Árbol, Ministerio del Poder Popular
             para el Ecosocialismo.
           </p>
         </div>

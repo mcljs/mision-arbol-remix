@@ -4,9 +4,7 @@ import { useCatch, useLoaderData, useParams } from "@remix-run/react";
 import { getPost } from "~/models/post.server";
 import invariant from "tiny-invariant";
 import { getSeoMeta } from "~/utils/seo";
-import formatDate from "date-fns/format";
-import parseISO from "date-fns/parseISO";
-import esLocale from "date-fns/locale/es";
+import { formatDate } from "../../utils/misc";
 import Link from "../../components/Link";
 import SkeletonImage from "../../components/SkeletonImage";
 
@@ -69,7 +67,7 @@ export default function PostRoute({ twitterHandle }) {
             className="mx-auto mb-5 max-w-screen-md px-4 text-lg italic leading-relaxed text-gray-500 dark:text-[#becde3] lg:px-2 
 "
           >
-            {formatDate(parseISO(createdAt), "PPP", { locale: esLocale })}
+            {formatDate(createdAt)}
           </p>
           <h1 className="mx-auto max-w-screen-md  px-4 text-4xl font-semibold leading-relaxed text-gray-800 dark:text-white lg:px-0">
             {title}
