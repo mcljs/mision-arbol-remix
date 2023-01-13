@@ -42,13 +42,20 @@ export default function VerticesHome() {
           {features.map((feature) => (
             <li
               key={feature.name}
-              className="rounded-2xl border border-gray-200 p-8 bg-white dark:bg-secondary-900"
+              className="rounded-2xl border border-gray-200 bg-white p-8 dark:bg-secondary-900"
             >
-              <img src={feature.icon} className="h-12 w-12" alt="" />
+              <img
+                loading="lazy"
+                src={feature.icon}
+                className="h-12 w-12"
+                alt=""
+              />
               <h3 className="mt-6 font-semibold text-gray-900 dark:text-slate-100">
                 {feature.name}
               </h3>
-              <p className="mt-2 text-gray-700 dark:text-secondary-200">{feature.description}</p>
+              <p className="mt-2 text-gray-700 dark:text-secondary-200">
+                {feature.description}
+              </p>
             </li>
           ))}
         </ul>

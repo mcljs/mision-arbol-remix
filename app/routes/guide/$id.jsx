@@ -5,12 +5,10 @@ import Link from "../../components/Link";
 import { especies } from "../../data/especies";
 import { getSeoMeta } from "~/utils/seo";
 
-
-
 export const meta = ({ data }) => {
   const { keywords = [] } = data.meta ?? {};
   const seoMeta = getSeoMeta({
-    title: 'Mision Arbol - Guia',
+    title: "Mision Arbol - Guia",
     description: data.description,
     twitter: {
       description: data.description,
@@ -49,6 +47,7 @@ export default function PostSlug() {
         <div className="shadow-3xl opacity-85 mx-6 w-full rounded-lg bg-white dark:bg-[#121f3d] lg:mx-0 lg:w-3/5 lg:rounded-l-lg lg:rounded-r-none">
           <div className="p-4 text-center md:p-12 lg:text-left">
             <img
+              loading="lazy"
               src={data.imageURL}
               className="mx-auto -mt-16  block h-48 w-48 bg-cover bg-center shadow-xl lg:hidden"
               alt="img"
@@ -94,8 +93,9 @@ export default function PostSlug() {
 
         <div className="w-full lg:w-2/5">
           <img
+            loading="lazy"
             src={data.imageURL}
-            className="hidden lg:ml-5 rounded-none shadow-2xl lg:block lg:rounded-lg"
+            className="hidden rounded-none shadow-2xl lg:ml-5 lg:block lg:rounded-lg"
             alt="img"
           />
         </div>

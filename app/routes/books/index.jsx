@@ -53,6 +53,7 @@ export default function PostsRoute() {
                       >
                         <div className="h-full w-full">
                           <img
+                            loading="lazy"
                             src={`/books/${book.imageUrl}`}
                             alt=""
                             className="z-10 h-full w-auto min-w-full object-contain  align-middle opacity-100 transition-opacity"

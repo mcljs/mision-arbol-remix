@@ -121,14 +121,10 @@ function Navbar() {
         <nav>
           <Container className="relative z-50 flex justify-between py-8">
             <div className="relative z-10 flex items-center gap-16">
-              <Link
-                prefetch="intent"
-                to="/"
-              
-              >
+              <Link prefetch="intent" to="/">
                 <img
                   loading="lazy"
-                  className="h-16 -mt-6 w-auto"
+                  className="-mt-6 h-16 w-auto"
                   alt="Logo"
                   src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
                   sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"

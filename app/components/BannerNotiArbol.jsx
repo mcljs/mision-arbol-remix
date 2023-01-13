@@ -3,7 +3,7 @@ import Link from "./Link";
 const BannerNotiArbol = () => (
   <>
     <div className="relative mx-10vw">
-      <div className="relative mt-16 mx-auto grid max-w-7xl grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6">
+      <div className="relative mx-auto mt-16 grid max-w-7xl grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6">
         <div className="col-span-full mb-16 flex flex-col space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0">
           <div className="space-y-2 lg:space-y-0">
             <h2 className="text-3xl leading-tight text-black dark:text-white md:text-4xl">
@@ -45,6 +45,7 @@ const BannerNotiArbol = () => (
             <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-none lg:p-0">
               <div className="aspect-w-10 aspect-h-6 sm:aspect-w-2 sm:aspect-h-1 lg:aspect-w-1">
                 <img
+                  loading="lazy"
                   className="rounded-3xl object-cover object-center shadow-2xl"
                   src="notiarbol/notiarbol.png"
                   alt=""
@@ -58,7 +59,6 @@ const BannerNotiArbol = () => (
               className="absolute inset-0 hidden overflow-hidden rounded-3xl lg:block"
               aria-hidden="true"
             >
-            
               <svg
                 className="absolute top-full -translate-y-1/3 -translate-x-1/3 transform xl:-translate-y-1/2"
                 width={404}

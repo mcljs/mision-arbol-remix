@@ -54,6 +54,7 @@ export default function BookRoute() {
               <div className="flex justify-center py-4">
                 <div className="relative table-cell text-center align-middle">
                   <img
+                    loading="lazy"
                     className="rounded-lg object-cover"
                     src={`/books/${imageUrl}`}
                     alt=""

@@ -51,6 +51,7 @@ export default function PostsRoute() {
                   >
                     <div className="flex-shrink-0">
                       <img
+                        loading="lazy"
                         className="h-48 w-full object-cover"
                         src={`/uploads/${post.imageUrl}`}
                         alt=""

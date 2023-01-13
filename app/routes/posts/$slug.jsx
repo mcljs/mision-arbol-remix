@@ -19,8 +19,7 @@ export const meta = ({ data }) => {
         images: [
           {
             alt: "Misión Arbol - @fundamiarbolven",
-            url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`
-            
+            url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
           },
         ],
         type: "website",
@@ -79,9 +78,10 @@ export default function PostRoute({ twitterHandle }) {
 
         <figure>
           <SkeletonImage
-            className="my-4 mx-auto w-full max-w-screen-md rounded-lg lg:px-0 px-4"
+            className="my-4 mx-auto w-full max-w-screen-md rounded-lg px-4 lg:px-0"
             img={
               <img
+                loading="lazy"
                 className="rounded-lg"
                 src={`/uploads/${imageUrl}`}
                 alt=""
@@ -92,7 +92,7 @@ export default function PostRoute({ twitterHandle }) {
           />
         </figure>
         <div
-          className="prose prose-lg prose-indigo mx-auto mt-6 px-4 pb-20 text-secondary-700 dark:prose-invert dark:text-white lg:px-0"
+          className="prose prose-lg prose-indigo mx-auto mt-6 px-4 pb-20 text-secondary-700 dark:text-white dark:prose-invert lg:px-0"
           dangerouslySetInnerHTML={{ __html: html }}
         />
         <img

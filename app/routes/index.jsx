@@ -164,6 +164,7 @@ export default function Index() {
                         className="aspect-h-4 aspect-w-3 rounded-lg transition duration-300 hover:ring-2    hover:ring-secondary-900 hover:ring-offset-2 focus:outline-none disabled:opacity-50 disabled:ring-slate-100   dark:hover:ring-slate-50"
                         img={
                           <img
+                            loading="lazy"
                             src={`/uploads/${post.imageUrl}`}
                             alt=""
                             className="focus-ring w-full rounded-lg object-cover object-center transition"

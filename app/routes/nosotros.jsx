@@ -19,10 +19,7 @@ export const links = () => {
   return [...seoLinks];
 };
 
-
-
 function nosotros() {
-
   return (
     <div>
       <HeaderLayout
@@ -58,6 +55,7 @@ function nosotros() {
             <div className="mr-auto ml-auto w-full px-4 dark:bg-[#0791e6] md:w-4/12">
               <div className="">
                 <img
+                  loading="lazy"
                   src="https://res.cloudinary.com/dk5bvgq20/image/upload/v1616366782/assets/jurid_e07bpu.jpg"
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
@@ -108,6 +106,7 @@ function nosotros() {
             <div className="ml-auto mr-auto mt-16 w-full px-4 sm:mt-0 md:w-5/12">
               <div className="md:pr-12">
                 <img
+                  loading="lazy"
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
                   src="https://images.pexels.com/photos/4207909/pexels-photo-4207909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -145,6 +144,7 @@ function nosotros() {
               <div className="space-y-4">
                 <div className="aspect-w-3 aspect-h-2">
                   <img
+                    loading="lazy"
                     className="rounded-lg object-cover shadow-lg"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6NPWTFYHv0U8zNP6o--FWLTH2S2IzDHM6o5iMJC6A4FCzvdqJyu2Ma0a4TQBeEDD77r8&usqp=CAU"
                     alt=""
@@ -157,7 +157,7 @@ function nosotros() {
                       {" "}
                       Josué Alejandro Lorca Vega
                     </h3>
-                    <p className="dark:text-slate-200 text-secondary-900">
+                    <p className="text-secondary-900 dark:text-slate-200">
                       MINISTRO DEL PODER POPULAR PARA EL ECOSOCIALISMO
                     </p>
                   </div>
@@ -189,6 +189,7 @@ function nosotros() {
               <div className="space-y-4">
                 <div className="aspect-w-3 aspect-h-2">
                   <img
+                    loading="lazy"
                     className="rounded-lg object-cover shadow-lg"
                     src="https://pbs.twimg.com/profile_images/1037101550571806722/zYacZcEJ_400x400.jpg"
                     alt=""
@@ -198,7 +199,7 @@ function nosotros() {
                 <div className="space-y-2">
                   <div className="space-y-1 text-lg font-medium leading-6">
                     <h3 className="dark:text-white">Wilmer Vásquez Mateus</h3>
-                    <p className="dark:text-slate-200 text-secondary-900">
+                    <p className="text-secondary-900 dark:text-slate-200">
                       PRESIDENTE DE LA FUNDACIÓN MISIÓN ÁRBOL
                     </p>
                   </div>
@@ -226,7 +227,6 @@ function nosotros() {
               </div>
             </li>
           </ul>
-        
         </div>
       </section>
     </div>
