@@ -30,11 +30,11 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
   },
   openGraph: {
     type: "website",
-    site_name: "process.env.NEXT_PUBLIC_SITE_TITLE",
+    site_name: "@fundamiarbolven",
 
     images: [
       {
-        url: `${externalLinks.self}seoInit.jpeg`,
+        image: `${externalLinks.self}/seoInit.jpeg`,
         width: 1200,
         height: 630,
         alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
