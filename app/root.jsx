@@ -69,6 +69,18 @@ export const meta = () => {
     ...seoMeta,
     ...getSeoMeta({
       description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
+      openGraph: {
+        type: "website",
+        site_name: "@fundamiarbolven",
+        images: [
+          {
+            url: `${externalLinks.self}seoInit.jpeg`,
+            width: 1200,
+            height: 630,
+            alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
+          },
+        ],
+      },
       additionalLinkTags: [
         {
           rel: "icon",

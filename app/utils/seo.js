@@ -28,18 +28,5 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
       id: "fundamiarbolven",
     },
   },
-  openGraph: {
-    type: "website",
-    site_name: "@fundamiarbolven",
-
-    images: [
-      {
-        url: `${externalLinks.self}seoInit.jpeg`,
-        width: 1200,
-        height: 630,
-        alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-      },
-    ],
-    
-  },
+  
 });
