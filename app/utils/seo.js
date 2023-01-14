@@ -28,5 +28,4 @@ export let { getSeo, getSeoLinks, getSeoMeta } = initSeo({
       id: "fundamiarbolven",
     },
   },
-  
 });
