@@ -180,13 +180,30 @@ function PageLoadingMessage() {
 
 export const links = () => {
   return [
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: styles },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/favicons/apple-touch-icon.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      href: '/favicons/favicon-32x32.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      href: '/favicons/favicon-16x16.png',
+    },
     {
       rel: "icon",
-      href: `${externalLinks.self}favicon.ico`,
+      href: `/favicon.ico`,
     },
     { rel: "manifest", href: "/site.webmanifest" },
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: styles },
     {
       href: "/posts/rss.xml",
       rel: "alternate",
@@ -234,7 +251,7 @@ function App() {
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
-        <meta name="theme-color" content={`${theme ? theme : "dark"}`} />
+        <meta name="theme-color" content={`#8bbd52`} />
         <meta
           name="google-site-verification"
           content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64"
