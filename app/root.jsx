@@ -27,6 +27,7 @@ import { Circle } from "./components/Circle";
 import Footer from "./components/Footer";
 import { getSeo, getSeoMeta } from "./utils/seo";
 import { externalLinks } from "./external-links";
+import { removeTrailingSlash } from "./utils/misc";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -210,6 +211,15 @@ export const loader = async ({ request }) => {
   });
 };
 
+function CanonicalLink() {
+  const { pathname } = useLocation();
+  const canonicalUrl = removeTrailingSlash(`${externalLinks.self1}${pathname}`);
+
+  React.useEffect(() => {}, [canonicalUrl]);
+
+  return <link rel="canonical" href={canonicalUrl} />;
+}
+
 function App() {
   const location = useLocation();
   const { gaTrackingId } = useLoaderData();
@@ -224,11 +234,14 @@ function App() {
     <html lang="en" className={`h-full ${theme ? theme : "dark"}`}>
       <head>
         <ThemeMeta />
+        <meta name="theme-color" content={`${theme ? theme : "dark"}`} />
         <meta
           name="google-site-verification"
           content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64"
         />
+
         <Meta />
+        <CanonicalLink />
         <Links />
         <noscript>
           <link rel="stylesheet" href={noScriptStyles} />
