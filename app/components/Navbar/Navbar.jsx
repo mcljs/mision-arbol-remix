@@ -124,11 +124,13 @@ function Navbar() {
               <Link prefetch="intent" to="/">
                 <img
                   loading="lazy"
-                  className="-mt-6 h-16 w-auto"
+                  className="-mt-6"
                   alt="Logo"
                   src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
                   sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
                   crossOrigin="anonymous"
+                  width={71}
+                  height={53}
                 />
               </Link>
               <div className="hidden lg:flex lg:gap-10">
