@@ -4,6 +4,7 @@
   "sideEffects": false,
   "scripts": {
     "deploy": "pm2 start yarn --interpreter bash --name mision-arbol -- start",
+    "clean": "rimraf ./node_modules/.cache ./server/dist ./build ./public/build \"./app/styles/**/*.css\"",   
     "build": "run-s build:*",
     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
     "build:remix": "remix build",
@@ -17,7 +18,7 @@
     "start:mocks": "binode --require ./mocks -- @remix-run/serve:remix-serve build",
     "test": "vitest",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 ",
-    "pretest:e2e:run": "npm run build", 
+    "pretest:e2e:run": "npm run build",
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811",
     "typecheck": "tsc -b && tsc -b",
     "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run"
@@ -56,6 +57,7 @@
     "react-share": "^4.4.1",
     "remix-seo": "^0.1.0",
     "remix-utils": "^5.2.1",
+    "rimraf": "^4.1.1",
     "spin-delay": "^1.2.0",
     "tiny-invariant": "^1.3.1"
   },
