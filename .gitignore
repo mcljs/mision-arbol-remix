@@ -4,15 +4,24 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 pnpm-lock.yml
+/coverage
 
 node_modules
 
+/app/styles/**/*.css
+/app/styles/no-scripts.css
+/app/styles/style.css
+/.cache
 /build
 /public/build
 .env
 
+*.local.*
+
 /cypress/screenshots
 /cypress/videos
 /prisma/data.db-journal
+other/postcss.ignored
 
-/app/styles/tailwind.css
+
+other/postcss.ignored
