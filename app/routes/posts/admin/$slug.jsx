@@ -108,9 +108,9 @@ export default function NewPostRoute() {
   // });
 
   const transition = useNavigation();
-  const isCreating = transition?.formData.get("intent") === "create";
-  const isUpdating = transition?.formData.get("intent") === "update";
-  const isDeleting = transition?.formData.get("intent") === "delete";
+  const isCreating = transition.submission?.formData.get("intent") === "create";
+  const isUpdating = transition.submission?.formData.get("intent") === "update";
+  const isDeleting = transition.submission?.formData.get("intent") === "delete";
   const isNewPost = !data.post;
   let slug = "";
 

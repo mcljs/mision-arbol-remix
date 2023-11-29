@@ -33,7 +33,6 @@ export const meta = ({ data }) => {
     },
   });
 
-  // Convertir el objeto seoMetaData en un arreglo de objetos meta
   const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
     if (typeof value === 'string') {
       return [{ name: key, content: value }];
