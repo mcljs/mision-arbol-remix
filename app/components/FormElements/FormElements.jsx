@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
+import { ExclamationCircleIcon } from '@heroicons/react/solid/index.js';
 
 function Label({ className, ...labelProps }) {
   return (

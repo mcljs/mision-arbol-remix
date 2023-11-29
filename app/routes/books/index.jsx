@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import { getBookListings } from "../../models/book.server";
 import { useOptionalAdminUser } from "../../utils";
-import { getSeo } from "../../utils/seo";
+import { getSeo, getSeoMeta } from "../../utils/seo";
 
 const [seoMeta, seoLinks] = getSeo({
   title: "Mision Arbol - Libros",
@@ -12,7 +12,31 @@ const [seoMeta, seoLinks] = getSeo({
 });
 
 export const meta = () => {
-  return { ...seoMeta };
+  const baseTitle = "Misión Árbol - Libros";
+
+  const title = `${baseTitle}`;
+
+  const seoMetaData = getSeoMeta({
+    title: baseTitle,
+  });
+
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === "string") {
+      return [{ name: key, content: value }];
+    } else if (typeof value === "object" && value !== null) {
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    { title },
+    ...seoMetaArray,
+    { property: "og:image:alt", content: title },
+    { property: "twitter:image:alt", content: title },
+  ];
 };
 
 export const links = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { AnnotationIcon, ChatAlt2Icon, XIcon } from "@heroicons/react/outline";
+import { AnnotationIcon, ChatAlt2Icon, XIcon } from "@heroicons/react/outline/index.js";
 import Link from "../Link";
 import { useOptionalUser } from "../../utils";
 import clsx from "clsx";

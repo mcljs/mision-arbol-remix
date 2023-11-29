@@ -6,9 +6,12 @@ import { especies } from "../../data/especies";
 import { getSeoMeta } from "~/utils/seo";
 
 export const meta = ({ data }) => {
-  const { keywords = [] } = data.meta ?? {};
-  const seoMeta = getSeoMeta({
-    title: "Mision Arbol - Guia",
+  const baseTitle = "Misión Árbol - Guia";
+
+  const title = `${baseTitle}`;
+
+  const seoMetaData = getSeoMeta({
+    title: baseTitle, 
     description: data.description,
     twitter: {
       description: data.description,
@@ -16,7 +19,25 @@ export const meta = ({ data }) => {
     },
   });
 
-  return { ...seoMeta, keywords: keywords.join(", ") };
+ 
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === 'string') {
+      return [{ name: key, content: value }];
+    } else if (typeof value === 'object' && value !== null) {
+
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    {  title }, 
+    ...seoMetaArray,
+    { property: "og:image:alt", content: title },
+    { property: "twitter:image:alt", content: title },
+  ];
 };
 
 export const getEspById = (id) => {
