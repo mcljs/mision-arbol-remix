@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { especies } from "../../data/especies";
 import { EspList } from "../../components/EspList";
 import { Tab } from '@headlessui/react'
-import { getSeo } from "~/utils/seo";
+import { getSeo, getSeoMeta } from "~/utils/seo";
 import { Container } from "../../components/Container";
 
 const [seoMeta, seoLinks] = getSeo({
@@ -14,8 +14,39 @@ const [seoMeta, seoLinks] = getSeo({
 });
 
 export const meta = () => {
-  return { ...seoMeta };
+  // Título base y descripción
+  const baseTitle = "Misión Árbol - Guía de Especies";
+
+
+  // Aplicar el titleTemplate manualmente
+  const title = `${baseTitle}`;
+
+  const seoMetaData = getSeoMeta({
+    title: baseTitle, // Pasar el título base a getSeoMeta
+    // ... otras configuraciones de SEO si son necesarias ...
+  });
+
+  // Convertir el objeto seoMetaData en un arreglo de objetos meta
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === 'string') {
+      return [{ name: key, content: value }];
+    } else if (typeof value === 'object' && value !== null) {
+      // Para propiedades que son objetos, como openGraph
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    {  title }, 
+    ...seoMetaArray,
+    { property: "og:image:alt", content: title },
+    { property: "twitter:image:alt", content: title },
+  ];
 };
+
 
 export const links = () => {
   return [...seoLinks];

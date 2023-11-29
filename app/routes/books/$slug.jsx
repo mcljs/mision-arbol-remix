@@ -1,27 +1,14 @@
 import { marked } from "marked";
 import { json } from "@remix-run/node";
-import { useRouteError, isRouteErrorResponse, useLoaderData, useParams } from "@remix-run/react";
+import {
+  useRouteError,
+  isRouteErrorResponse,
+  useLoaderData,
+  useParams,
+} from "@remix-run/react";
 import { getBook } from "../../models/book.server";
 import invariant from "tiny-invariant";
 import { getSeoMeta } from "../../utils/seo";
-
-export const meta = ({ data, parentsData }) => {
-  return {
-    ...getSeoMeta({
-      title: data.title,
-      description: data.description,
-      openGraph: {
-        type: "article",
-      },
-    }),
-    "twitter:image": `https://misionarbol.minec.gob.ve/books/${data.imageUrl}`,
-    "og:image": `https://misionarbol.minec.gob.ve/books/${data.imageUrl}`,
-    "og:image:alt": data.title,
-    "twitter:image:alt": data.title,
-    "article:published_time": new Date(data.createdAt).toISOString(),
-    "article:modified_time": new Date(data.updatedAt).toISOString(),
-  };
-};
 
 export const loader = async ({ params }) => {
   const { slug } = params;
@@ -41,6 +28,59 @@ export const loader = async ({ params }) => {
     updatedAt: book.updatedAt,
     html,
   });
+};
+
+export const meta = ({ data }) => {
+  const title = `${data.title}`;
+  const description = data.description;
+
+  const seoMetaData = getSeoMeta({
+    title: data.title,
+    description,
+    openGraph: {
+      images: [
+        {
+          alt: data.title,
+          url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      image: {
+        alt: data.title,
+        url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
+      },
+    },
+  });
+
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === "string") {
+      return [{ name: key, content: value }];
+    } else if (typeof value === "object" && value !== null) {
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    { title },
+    ...seoMetaArray,
+    { property: "twitter:image:alt", content: title },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    {
+      property: "article:published_time",
+      content: new Date(data.createdAt).toISOString(),
+    },
+    {
+      property: "article:modified_time",
+      content: new Date(data.updatedAt).toISOString(),
+    },
+  ];
 };
 
 export default function BookRoute() {
@@ -145,15 +185,14 @@ export default function BookRoute() {
   );
 }
 
-
 export function ErrorBoundary() {
   const error = useRouteError();
-  const params = useParams(); 
+  const params = useParams();
   if (isRouteErrorResponse(error)) {
     // Si el error es un error de ruta (como un 404)
     if (error.status === 404) {
       // Asume que tienes acceso a los parámetros de la ruta como antes
-  
+
       return (
         <div className="text-red-500">
           Uh oh! The post with the slug "{params.slug}" does not exist!

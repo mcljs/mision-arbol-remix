@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import { getPostListings } from "~/models/post.server";
 import { useOptionalAdminUser } from "~/utils";
-import { getSeo } from "~/utils/seo";
+import { getSeo,getSeoMeta } from "~/utils/seo";
 
 const [seoMeta, seoLinks] = getSeo({
   title: "Mision Arbol - Noticias",
@@ -11,8 +11,39 @@ const [seoMeta, seoLinks] = getSeo({
   },
 });
 
+
 export const meta = () => {
-  return { ...seoMeta };
+  // Título base y descripción
+  const baseTitle = "Misión Árbol - Noticias";
+
+
+  // Aplicar el titleTemplate manualmente
+  const title = `${baseTitle} - @fundamiarbolven`;
+
+  const seoMetaData = getSeoMeta({
+    title: baseTitle, // Pasar el título base a getSeoMeta
+    // ... otras configuraciones de SEO si son necesarias ...
+  });
+
+  // Convertir el objeto seoMetaData en un arreglo de objetos meta
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === 'string') {
+      return [{ name: key, content: value }];
+    } else if (typeof value === 'object' && value !== null) {
+      // Para propiedades que son objetos, como openGraph
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    {  title }, 
+    ...seoMetaArray,
+    { property: "og:image:alt", content: title },
+    { property: "twitter:image:alt", content: title },
+  ];
 };
 
 export const links = () => {

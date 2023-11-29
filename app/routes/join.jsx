@@ -56,9 +56,9 @@ export const action = async ({ request }) => {
 };
 
 export const meta = () => {
-  return {
-    title: "Sign Up",
-  };
+  return [
+    { title: "Sign Up" },
+  ];
 };
 
 export default function Join() {

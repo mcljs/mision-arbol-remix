@@ -66,39 +66,51 @@ export const handle = {
 };
 
 export const meta = () => {
-  return {
-    charset: "utf-8",
-    viewport: "width=device-width,initial-scale=1",
-    ...seoMeta,
-    ...getSeoMeta({
-      description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-      openGraph: {
-        type: "website",
-        site_name: "@fundamiarbolven",
-        images: [
-          {
-            url: `${externalLinks.self}seoInit.jpeg`,
-            width: 1200,
-            height: 630,
-            alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-          },
-        ],
-      },
-      additionalLinkTags: [
+  const seoMetaData = getSeoMeta({
+    description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
+    openGraph: {
+      type: "website",
+      site_name: "@fundamiarbolven",
+      images: [
         {
-          rel: "icon",
-          href: `${externalLinks.self}favicon.ico`,
+          url: `${externalLinks.self}seoInit.jpeg`,
+          width: 1200,
+          height: 630,
+          alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
         },
       ],
-      twitter: {
-        card: "summary_large_image",
-        image: {
-          alt: "Misión Arbol - @fundamiarbolven",
-          url: `${externalLinks.self}seoInit.jpeg`,
-        },
+    },
+    additionalLinkTags: [
+      {
+        rel: "icon",
+        href: `${externalLinks.self}favicon.ico`,
       },
-    }),
-  };
+    ],
+    twitter: {
+      card: "summary_large_image",
+      image: {
+        alt: "Misión Arbol - @fundamiarbolven",
+        url: `${externalLinks.self}seoInit.jpeg`,
+      },
+    },
+  });
+
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === "string") {
+      return [{ name: key, content: value }];
+    } else if (typeof value === "object" && value !== null) {
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    ...seoMetaArray,
+    { charset: "utf-8" },
+    { viewport: "width=device-width,initial-scale=1" },
+  ];
 };
 
 const LOADER_WORDS = ["Cargando..."];
@@ -255,9 +267,15 @@ function App() {
         <ThemeMeta />
         <meta name="theme-color" content={`#8bbd52`} />
         <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,viewport-fit=cover"
+        />
+        <meta
           name="google-site-verification"
           content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64"
         />
+        <meta charSet="utf-8" />
+        <Meta />
         <CanonicalLink />
         <Links />
         <noscript>

@@ -24,16 +24,46 @@ export const handle = {
   },
 };
 
+
+
+
+
+
 export const meta = () => {
-  return {
-    ...getSeoMeta({
-      title: "Misión Árbol",
-      description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-    }),
-    "og:image:alt": "Misión Árbol",
-    "twitter:image:alt": "Misión Árbol",
-  };
+
+  const baseTitle = "Misión Árbol";
+  const description = "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela";
+
+
+  const title = `${baseTitle} - @fundamiarbolven`;
+
+  const seoMetaData = getSeoMeta({
+    title: baseTitle, 
+    description,
+
+  });
+
+  // Convertir el objeto seoMetaData en un arreglo de objetos meta
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === 'string') {
+      return [{ name: key, content: value }];
+    } else if (typeof value === 'object' && value !== null) {
+      // Para propiedades que son objetos, como openGraph
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    {  title }, 
+    ...seoMetaArray,
+    { property: "og:image:alt", content: title },
+    { property: "twitter:image:alt", content: title },
+  ];
 };
+
 
 export const loader = async () => {
   const posts = await getPostListings();

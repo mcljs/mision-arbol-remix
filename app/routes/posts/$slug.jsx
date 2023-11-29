@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { json } from "@remix-run/node";
-import {  useRouteError, isRouteErrorResponse, useLoaderData, useParams } from "@remix-run/react";
+import {useRouteError,isRouteErrorResponse, useLoaderData, useParams } from "@remix-run/react";
 import { getPost } from "~/models/post.server";
 import invariant from "tiny-invariant";
 import { getSeoMeta } from "~/utils/seo";
@@ -9,32 +9,51 @@ import Link from "../../components/Link";
 import SkeletonImage from "../../components/SkeletonImage";
 
 export const meta = ({ data }) => {
-  return {
-    ...getSeoMeta({
-      title: data.title,
-      description: data.description,
-      openGraph: {
-        images: [
-          {
-            alt: "Misión Arbol - @fundamiarbolven",
-            url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
-          },
-        ],
-        type: "website",
-      },
-      twitter: {
-        card: "summary_large_image",
-        image: {
+  const title = `${data.title}`;
+  const description = data.description;
+
+  const seoMetaData = getSeoMeta({
+    title: data.title, 
+    description,
+    openGraph: {
+      images: [
+        {
           alt: data.title,
           url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
         },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      image: {
+        alt: data.title,
+        url: `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
       },
-    }),
-    "og:image": `https://misionarbol.minec.gob.ve/uploads/${data.imageUrl}`,
-    "og:image:alt": data.title,
-    "article:published_time": new Date(data.createdAt).toISOString(),
-    "article:modified_time": new Date(data.updatedAt).toISOString(),
-  };
+    },
+  });
+
+  // Convertir el objeto seoMetaData en un arreglo de objetos meta
+  const seoMetaArray = Object.entries(seoMetaData).flatMap(([key, value]) => {
+    if (typeof value === 'string') {
+      return [{ name: key, content: value }];
+    } else if (typeof value === 'object' && value !== null) {
+      return Object.entries(value).map(([innerKey, innerValue]) => {
+        return { property: `${key}:${innerKey}`, content: innerValue };
+      });
+    }
+    return [];
+  });
+
+  return [
+    { title }, 
+    ...seoMetaArray,
+    { property: "twitter:image:alt", content: title },
+    { property: "og:image:width", content: "1200" }, 
+    { property: "og:image:height", content: "630" }, 
+    { property: "article:published_time", content: new Date(data.createdAt).toISOString() },
+    { property: "article:modified_time", content: new Date(data.updatedAt).toISOString() },
+  ];
 };
 
 export const loader = async ({ params }) => {

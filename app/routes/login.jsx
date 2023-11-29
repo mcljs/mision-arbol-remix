@@ -55,9 +55,9 @@ export const action = async ({ request }) => {
 };
 
 export const meta = () => {
-  return {
-    title: "Login",
-  };
+  return [
+    { title: "Login" },
+  ];
 };
 
 export default function LoginPage() {
