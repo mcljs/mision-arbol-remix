@@ -1,10 +1,10 @@
 import {
   Form,
   useActionData,
-  useCatch,
+  useRouteError, isRouteErrorResponse,
   useLoaderData,
   useParams,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import {
   redirect,
@@ -122,10 +122,10 @@ export default function NewPostRoute() {
   //   blah();
   // });
 
-  const transition = useTransition();
-  const isCreating = transition.submission?.formData.get("intent") === "create";
-  const isUpdating = transition.submission?.formData.get("intent") === "update";
-  const isDeleting = transition.submission?.formData.get("intent") === "delete";
+  const transition = useNavigation();
+  const isCreating = transition?.formData.get("intent") === "create";
+  const isUpdating = transition?.formData.get("intent") === "update";
+  const isDeleting = transition?.formData.get("intent") === "delete";
   const isNewPost = !data.post;
   let slug = "";
 
@@ -249,27 +249,42 @@ export default function NewPostRoute() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  const params = useParams();
-  if (caught.status === 404) {
-    return (
-      <div className="text-red-500">
-        Uh oh! The post with the slug "{params.slug}" does not exist!
-      </div>
-    );
-  }
-  throw new Error(`Unsupported thrown response status code: ${caught.status}`);
-}
+export function ErrorBoundary() {
+  const error = useRouteError();
+  const params = useParams(); 
+  if (isRouteErrorResponse(error)) {
+    // Si el error es un error de ruta (como un 404)
+    if (error.status === 404) {
+      // Asume que tienes acceso a los parámetros de la ruta como antes
+  
+      return (
+        <div className="text-red-500">
+          Uh oh! The post with the slug "{params.slug}" does not exist!
+        </div>
+      );
+    }
 
-export function ErrorBoundary({ error }) {
-  if (error instanceof Error) {
+    // Para otros códigos de estado de error de ruta
     return (
-      <div className="text-red-500">
-        Oh no, something went wrong!
-        <pre>{error.message}</pre>
+      <div>
+        <h1>Error</h1>
+        <p>Status: {error.status}</p>
+        <p>{error.statusText || "An error occurred"}</p>
       </div>
     );
   }
-  return <div className="text-red-500">Oh no, something went wrong!</div>;
+
+  // Manejo de errores que no son específicos de la ruta
+  let errorMessage = "Unknown error";
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  }
+
+  return (
+    <div>
+      <h1>Uh oh...</h1>
+      <p>Something went wrong.</p>
+      <pre>{errorMessage}</pre>
+    </div>
+  );
 }

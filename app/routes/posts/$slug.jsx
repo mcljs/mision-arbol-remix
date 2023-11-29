@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { json } from "@remix-run/node";
-import { useCatch, useLoaderData, useParams } from "@remix-run/react";
+import {  useRouteError, isRouteErrorResponse, useLoaderData, useParams } from "@remix-run/react";
 import { getPost } from "~/models/post.server";
 import invariant from "tiny-invariant";
 import { getSeoMeta } from "~/utils/seo";
@@ -129,15 +129,42 @@ export default function PostRoute({ twitterHandle }) {
     </>
   );
 }
-export function CatchBoundary() {
-  const caught = useCatch();
-  const params = useParams();
-  if (caught.status === 404) {
+export function ErrorBoundary() {
+  const error = useRouteError();
+  const params = useParams(); 
+  if (isRouteErrorResponse(error)) {
+    // Si el error es un error de ruta (como un 404)
+    if (error.status === 404) {
+      // Asume que tienes acceso a los parámetros de la ruta como antes
+  
+      return (
+        <div className="text-red-500">
+          Uh oh! The post with the slug "{params.slug}" does not exist!
+        </div>
+      );
+    }
+
+    // Para otros códigos de estado de error de ruta
     return (
-      <div className="text-red-500">
-        Uh oh! The post with the slug "{params.slug}" does not exist!
+      <div>
+        <h1>Error</h1>
+        <p>Status: {error.status}</p>
+        <p>{error.statusText || "An error occurred"}</p>
       </div>
     );
   }
-  throw new Error(`Unsupported thrown response status code: ${caught.status}`);
+
+  // Manejo de errores que no son específicos de la ruta
+  let errorMessage = "Unknown error";
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  }
+
+  return (
+    <div>
+      <h1>Uh oh...</h1>
+      <p>Something went wrong.</p>
+      <pre>{errorMessage}</pre>
+    </div>
+  );
 }

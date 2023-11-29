@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { InboxIcon, SparklesIcon } from "@heroicons/react/outline";
+import { InboxIcon, SparklesIcon } from "@heroicons/react/outline/index.js";
 
 export default function CensoNacional() {
   return (

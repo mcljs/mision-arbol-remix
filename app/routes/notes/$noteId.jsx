@@ -1,9 +1,8 @@
 import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData } from "@remix-run/react";
+import { Form,  useRouteError, isRouteErrorResponse , useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
-import { deleteNote } from "~/models/note.server";
-import { getNote } from "~/models/note.server";
+import { deleteNote, getNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
 
 export const loader = async ({ request, params }) => {
@@ -46,18 +45,37 @@ export default function NoteDetailsPage() {
   );
 }
 
-export function ErrorBoundary({ error }) {
-  console.error(error);
+export function ErrorBoundary() {
+  const error = useRouteError();
 
-  return <div>An unexpected error occurred: {error.message}</div>;
-}
+  // Aquí manejas los errores específicos de las rutas, como un error 404
+  if (isRouteErrorResponse(error)) {
+    if (error.status === 404) {
+      return <div>Note not found</div>;
+    }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-
-  if (caught.status === 404) {
-    return <div>Note not found</div>;
+    // Aquí puedes manejar otros códigos de estado específicos
+    // Por ejemplo, un error 500
+    return (
+      <div>
+        <h1>Error {error.status}</h1>
+        <p>{error.statusText || 'An unexpected error occurred.'}</p>
+      </div>
+    );
   }
 
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+  // Manejo de errores generales de JavaScript que no son específicos de la ruta
+  let errorMessage = "Unknown error";
+  if (error instanceof Error) {
+    console.error(error);
+    errorMessage = error.message;
+  }
+
+  return (
+    <div>
+      <h1>Uh oh...</h1>
+      <p>Something went wrong.</p>
+      <pre>{errorMessage}</pre>
+    </div>
+  );
 }

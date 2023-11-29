@@ -1,5 +1,5 @@
 import * as dateFns from "date-fns";
-import esLocale from "date-fns/locale/es";
+import esLocale from "date-fns/locale/es/index.js";
 
 function formatDuration(seconds) {
   const mins = Math.floor(seconds / 60)

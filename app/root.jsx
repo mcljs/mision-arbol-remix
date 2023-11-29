@@ -7,18 +7,19 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  useRouteError, isRouteErrorResponse,
   useLoaderData,
   useLocation,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import { AnimatePresence, motion } from "framer-motion";
-import styles from "./styles/style.css";
+import { metaV1 } from "@remix-run/v1-meta";
+// import styles from "./styles/style.css";
+// import tailwindStylesheetUrl from "./styles/tailwind.css";
+// import noScriptStyles from "./styles/no-script.css";
 import { SsrTheme, ThemeMeta, ThemeProvider, useTheme } from "./utils/theme";
 import { getThemeSession } from "./utils/theme-session.server";
 import * as gtag from "./utils/gtags.client";
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import noScriptStyles from "./styles/no-script.css";
 import { getUser } from "./session.server";
 import Navbar from "./components/Navbar";
 import { useSpinDelay } from "spin-delay";
@@ -64,39 +65,17 @@ export const handle = {
 };
 
 export const meta = () => {
-  return {
-    charset: "utf-8",
-    viewport: "width=device-width,initial-scale=1",
-    ...seoMeta,
-    ...getSeoMeta({
-      description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-      openGraph: {
-        type: "website",
-        site_name: "@fundamiarbolven",
-        images: [
-          {
-            url: `${externalLinks.self}seoInit.jpeg`,
-            width: 1200,
-            height: 630,
-            alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
-          },
-        ],
-      },
-      additionalLinkTags: [
-        {
-          rel: "icon",
-          href: `${externalLinks.self}favicon.ico`,
-        },
-      ],
-      twitter: {
-        card: "summary_large_image",
-        image: {
-          alt: "Misión Arbol - @fundamiarbolven",
-          url: `${externalLinks.self}seoInit.jpeg`,
-        },
-      },
-    }),
-  };
+  return [
+    { title: "Very cool app | Remix" },
+    {
+      property: "og:title",
+      content: "Very cool app",
+    },
+    {
+      name: "description",
+      content: "This app is the best",
+    },
+  ];
 };
 
 const LOADER_WORDS = ["Cargando..."];
@@ -115,7 +94,7 @@ const ACTION_WORDS = [
 let firstRender = true;
 
 function PageLoadingMessage() {
-  const transition = useTransition();
+  const transition = useNavigation();
   const [words, setWords] = React.useState([]);
   const [pendingPath, setPendingPath] = React.useState("");
   const showLoader = useSpinDelay(Boolean(transition.state !== "idle"), {
@@ -202,8 +181,6 @@ export const links = () => {
       href: `/favicon.ico`,
     },
     { rel: "manifest", href: "/site.webmanifest" },
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: styles },
     {
       href: "/posts/rss.xml",
       rel: "alternate",
@@ -257,11 +234,11 @@ function App() {
           content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64"
         />
 
-        <Meta />
+
         <CanonicalLink />
         <Links />
         <noscript>
-          <link rel="stylesheet" href={noScriptStyles} />
+          <link rel="stylesheet"  />
         </noscript>
       </head>
       <body className="duration-50  bg-slate-100  text-slate-900 transition dark:bg-gray-900">
@@ -311,76 +288,103 @@ export default function AppProviders() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  const location = useLocation();
-  console.error("CatchBoundary", caught);
-  if (caught.status === 404) {
-    return (
-      <html lang="en" className="dark h-full">
-        <head>
-          <title>Oh no...</title>
-          <Links />
-        </head>
-        <body className="h-full bg-white transition duration-500 dark:bg-gray-900">
-          <div className="flex min-h-full flex-col bg-white pt-16 pb-12">
-            <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-6 lg:px-8">
-              <div className="flex flex-shrink-0 justify-center">
-                <a href="/" className="inline-flex">
-                  <span className="sr-only">Logo</span>
+export function ErrorBoundary() {
+  const error = useRouteError();
 
-                  <img
-                    loading="lazy"
-                    className="mx-auto h-20 w-auto"
-                    alt="Logo"
-                    src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
-                    sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
-                    crossOrigin="anonymous"
-                    decoding="async"
-                  />
-                </a>
-              </div>
-              <div className="py-16">
-                <div className="text-center">
-                  <p className="text-base font-semibold text-green-600">404</p>
-                  <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                    Pagina no encontrada.
-                  </h1>
-                  <p className="mt-2 text-base text-gray-500">
-                    Lo sentimos, no pudimos encontrar la página que estás
-                    buscando.
-                  </p>
-                  <div className="mt-6">
-                    <a
-                      href="/"
-                      className="text-base font-medium text-green-600 hover:text-green-500"
-                    >
-                      Regresar al Inicio
-                      <span aria-hidden="true"> &rarr;</span>
-                    </a>
+  if (isRouteErrorResponse(error)) {
+    if (error.status === 404) {
+      return (
+        <html lang="en" className="dark h-full">
+          <head>
+            <title>Oh no...</title>
+            {/* Ensure to import Links correctly */}
+            <Links />
+          </head>
+          <body className="h-full bg-white transition duration-500 dark:bg-gray-900">
+            <div className="flex min-h-full flex-col bg-white pt-16 pb-12">
+              <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-6 lg:px-8">
+                <div className="flex flex-shrink-0 justify-center">
+                  <a href="/" className="inline-flex">
+                    <span className="sr-only">Logo</span>
+                    {/* Update the image link if necessary */}
+                    <img
+                      loading="lazy"
+                      className="mx-auto h-20 w-auto"
+                      alt="Logo"
+                      src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
+                      sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
+                      crossOrigin="anonymous"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+                <div className="py-16">
+                  <div className="text-center">
+                    <p className="text-base font-semibold text-green-600">404</p>
+                    <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+                      Pagina no encontrada.
+                    </h1>
+                    <p className="mt-2 text-base text-gray-500">
+                      Lo sentimos, no pudimos encontrar la página que estás
+                      buscando.
+                    </p>
+                    <div className="mt-6">
+                      <a
+                        href="/"
+                        className="text-base font-medium text-green-600 hover:text-green-500"
+                      >
+                        Regresar al Inicio
+                        <span aria-hidden="true"> &rarr;</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </main>
-            <footer className="mx-auto w-full max-w-7xl flex-shrink-0 px-6 lg:px-8">
-              <nav className="flex justify-center space-x-4">
-                <span
-                  className="inline-block border-l border-gray-300"
-                  aria-hidden="true"
-                />
-                <a
-                  target={`_blank`}
-                  href={externalLinks.twitter}
-                  className="text-sm font-medium text-gray-500 hover:text-gray-600"
-                >
-                  Twitter
-                </a>
-              </nav>
-            </footer>
-          </div>
-        </body>
-      </html>
+              </main>
+              <footer className="mx-auto w-full max-w-7xl flex-shrink-0 px-6 lg:px-8">
+                <nav className="flex justify-center space-x-4">
+                  <span
+                    className="inline-block border-l border-gray-300"
+                    aria-hidden="true"
+                  />
+                  {/* Update your external links reference as needed */}
+                  <a
+                    target={`_blank`}
+                    href={externalLinks.twitter}
+                    className="text-sm font-medium text-gray-500 hover:text-gray-600"
+                  >
+                    Twitter
+                  </a>
+                </nav>
+              </footer>
+            </div>
+          </body>
+        </html>
+      );
+    }
+    // Handle other known route errors
+    // Customize this section based on your needs
+
+    // Default message for unknown route errors
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>Status: {error.status}</p>
+        <p>{error.statusText || "An error occurred"}</p>
+      </div>
     );
   }
-  throw new Error(`Unhandled error: ${caught.status}`);
+
+  // Handle unknown errors
+  let errorMessage = "Unknown error";
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  }
+
+  return (
+    <div>
+      <h1>Uh oh...</h1>
+      <p>Something went wrong.</p>
+      <pre>{errorMessage}</pre>
+    </div>
+  );
 }
