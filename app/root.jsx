@@ -7,16 +7,17 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteError, isRouteErrorResponse,
+  useRouteError,
+  isRouteErrorResponse,
   useLoaderData,
   useLocation,
   useNavigation,
 } from "@remix-run/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { metaV1 } from "@remix-run/v1-meta";
-// import styles from "./styles/style.css";
-// import tailwindStylesheetUrl from "./styles/tailwind.css";
-// import noScriptStyles from "./styles/no-script.css";
+import styles from "./styles/style.css";
+import tailwindStylesheetUrl from "./styles/tailwind.css";
+import noScriptStyles from "./styles/no-script.css";
 import { SsrTheme, ThemeMeta, ThemeProvider, useTheme } from "./utils/theme";
 import { getThemeSession } from "./utils/theme-session.server";
 import * as gtag from "./utils/gtags.client";
@@ -65,17 +66,39 @@ export const handle = {
 };
 
 export const meta = () => {
-  return [
-    { title: "Very cool app | Remix" },
-    {
-      property: "og:title",
-      content: "Very cool app",
-    },
-    {
-      name: "description",
-      content: "This app is the best",
-    },
-  ];
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    ...seoMeta,
+    ...getSeoMeta({
+      description: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
+      openGraph: {
+        type: "website",
+        site_name: "@fundamiarbolven",
+        images: [
+          {
+            url: `${externalLinks.self}seoInit.jpeg`,
+            width: 1200,
+            height: 630,
+            alt: "Misión Árbol. MINEC. Gobierno Bolivariano de Venezuela",
+          },
+        ],
+      },
+      additionalLinkTags: [
+        {
+          rel: "icon",
+          href: `${externalLinks.self}favicon.ico`,
+        },
+      ],
+      twitter: {
+        card: "summary_large_image",
+        image: {
+          alt: "Misión Arbol - @fundamiarbolven",
+          url: `${externalLinks.self}seoInit.jpeg`,
+        },
+      },
+    }),
+  };
 };
 
 const LOADER_WORDS = ["Cargando..."];
@@ -160,21 +183,21 @@ function PageLoadingMessage() {
 export const links = () => {
   return [
     {
-      rel: 'apple-touch-icon',
-      sizes: '180x180',
-      href: '/favicons/apple-touch-icon.png',
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      href: "/favicons/apple-touch-icon.png",
     },
     {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '32x32',
-      href: '/favicons/favicon-32x32.png',
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      href: "/favicons/favicon-32x32.png",
     },
     {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '16x16',
-      href: '/favicons/favicon-16x16.png',
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      href: "/favicons/favicon-16x16.png",
     },
     {
       rel: "icon",
@@ -193,6 +216,8 @@ export const links = () => {
       type: "application/json",
       title: "Mision Arbol Noticias JSON Feed",
     },
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: styles },
     ...seoLinks,
   ];
 };
@@ -233,12 +258,10 @@ function App() {
           name="google-site-verification"
           content="rQQp9KZ2od6mRT0kWs84qLcFPxVA623W24NUMh-Cy64"
         />
-
-
         <CanonicalLink />
         <Links />
         <noscript>
-          <link rel="stylesheet"  />
+          <link rel="stylesheet" href={noScriptStyles} />
         </noscript>
       </head>
       <body className="duration-50  bg-slate-100  text-slate-900 transition dark:bg-gray-900">
@@ -320,7 +343,9 @@ export function ErrorBoundary() {
                 </div>
                 <div className="py-16">
                   <div className="text-center">
-                    <p className="text-base font-semibold text-green-600">404</p>
+                    <p className="text-base font-semibold text-green-600">
+                      404
+                    </p>
                     <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                       Pagina no encontrada.
                     </h1>
