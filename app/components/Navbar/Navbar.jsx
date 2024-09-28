@@ -1,6 +1,10 @@
 import React from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { AnnotationIcon, ChatAlt2Icon, XIcon } from "@heroicons/react/outline/index.js";
+import {
+  AnnotationIcon,
+  ChatAlt2Icon,
+  XIcon,
+} from "@heroicons/react/outline/index.js";
 import Link from "../Link";
 import { useOptionalUser } from "../../utils";
 import clsx from "clsx";
@@ -115,7 +119,7 @@ function Navbar() {
           "sticky  top-0 z-40 w-full flex-none backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] lg:z-50 lg:border-b lg:border-slate-900/10",
           isOpaque
             ? "bg-slate-100 supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75"
-            : "bg-slate-100/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent"
+            : "bg-slate-100/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent",
         )}
       >
         <nav>
@@ -126,8 +130,7 @@ function Navbar() {
                   loading="lazy"
                   className="-mt-6"
                   alt="Logo"
-                  src="https://res.cloudinary.com/mcljs/image/upload/c_fit,w_1180,ar_4:3,q_auto,f_auto/v1673497155/logo_bi7dle"
-                  sizes="(max-width: 639px) 80vw, (min-width: 640px) and (max-width: 1499px) 50vw, (min-width: 1500px) and (max-width: 1620px) 25vw, 410px"
+                  src="/logo.png"
                   crossOrigin="anonymous"
                   width={71}
                   height={53}
